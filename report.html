@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ButterflyMX — Social Strategy Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f3f5;
+    --panel: #f8f8f8;
+    --card: #f8f8f8;
+    --white: #ffffff;
+    --line: #e5e5ea;
+    --text: #1e1f2a;
+    --muted: #5b5d6b;
+    --subtle: #8a8d9b;
+    --purple: #7c5ae8;
+    --purple-soft: #f2ebff;
+    --soft-amber: #f3e8b7;
+    --soft-amber-border: #f0d66a;
+    --shadow: 0 1px 0 rgba(0,0,0,0.02), 0 10px 20px rgba(0,0,0,0.02);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5, p, ul { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+
+  .page-shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .sidebar {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 14px 10px;
+    position: sticky;
+    top: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .sidebar-header {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6e7a;
+    font-weight: 700;
+    margin: 4px 0 16px;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contents a {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #3a3b4a;
+    line-height: 1.45;
+  }
+
+  .contents a.active {
+    background: var(--purple-soft);
+    color: #5e2ccf;
+    font-weight: 700;
+  }
+
+  .contents a.subtle {
+    color: #3d404d;
+  }
+
+  .contents li {
+    padding: 0;
+  }
+
+  .main {
+    min-width: 0;
+    padding-top: 2px;
+  }
+
+  .main h1 {
+    font-size: clamp(2.5rem, 3.4vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.06em;
+    font-weight: 800;
+    color: #0f1017;
+    margin-bottom: 18px;
+  }
+
+  .intro {
+    max-width: 860px;
+    font-size: 17px;
+    color: #414554;
+    line-height: 1.55;
+    margin-bottom: 26px;
+  }
+
+  .meta-boxes {
+    display: grid;
+    gap: 14px;
+    max-width: 860px;
+  }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1.2fr 0.85fr;
+    gap: 18px;
+    align-items: center;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+  }
+
+  .meta-row .label {
+    font-size: 14px;
+    color: #3d404d;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .meta-row .value {
+    font-size: 15px;
+    color: #3d404d;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .meta-row .tag {
+    font-size: 13px;
+    color: #4d505e;
+    font-weight: 600;
+    text-align: right;
+    justify-self: end;
+  }
+
+  .limitations {
+    margin-top: 26px;
+    max-width: 860px;
+    background: rgba(243, 232, 183, 0.38);
+    border: 1px solid var(--soft-amber-border);
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+  }
+
+  .limitations h3 {
+    font-size: 15px;
+    color: #3d404d;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .limitations ul {
+    list-style: disc;
+    padding-left: 20px;
+    display: grid;
+    gap: 6px;
+    color: #4d505e;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .contents li.to-main {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .page-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: static;
+    }
+
+    .meta-row {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .meta-row .tag {
+      justify-self: start;
+      text-align: left;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">Contents</div>
+      <ul class="contents">
+        <li><a href="#">Executive Summary</a></li>
+        <li><a href="#" class="active">Methodology</a></li>
+        <li><a href="#" class="subtle">1. Reddit Is The Discovery Engine</a></li>
+        <li><a href="#" class="subtle">2. The "Alternative to X" Effect</a></li>
+        <li><a href="#" class="subtle">3. Your Best Product Research Lab</a></li>
+        <li><a href="#" class="subtle">4. Authenticity Wins</a></li>
+        <li><a href="#" class="subtle">5. Speed Captures Attention</a></li>
+        <li><a href="#" class="subtle">6. Developer Tools Dominate</a></li>
+        <li><a href="#" class="subtle">7. Reddit Fuels AI Citations</a></li>
+        <li class="to-main"><a href="#" class="subtle">The Reddit Playbook</a></li>
+        <li><a href="#" class="subtle">Common Mistakes</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <h1>Methodology</h1>
+
+      <p class="intro">
+        This study is powered by our Conversation Rank scoring infrastructure. Since July 2025,
+        at scale to help B2B SaaS companies understand their social presence.
+      </p>
+
+      <div class="meta-boxes">
+        <div class="meta-row">
+          <div class="label">Data Source</div>
+          <div class="value">522M+ Reddit mentions across 500K+ subreddits, monitored since July 2025</div>
+          <div class="tag">Brands Tracked<br>300K+ SaaS &amp; Tech brands</div>
+        </div>
+
+        <div class="meta-row">
+          <div class="label">Analysis Method</div>
+          <div class="value">AI-powered classification for sentiment, intent, topic, and buying signals; engagement metrics (upvotes, comments) tracked directly from Reddit</div>
+          <div class="tag">Timeframe<br>July 2025 — March 2026</div>
+        </div>
+      </div>
+
+      <div class="limitations">
+        <h3>Limitations</h3>
+        <ul>
+          <li>Analysis limited to publicly accessible Reddit content</li>
+          <li>Engagement metrics (upvotes, comments) measured at time of collection—may change over time</li>
+          <li>AI classification accuracy varies by content type and context</li>
+          <li>Some metrics based on sample analysis of high-volume datasets</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
