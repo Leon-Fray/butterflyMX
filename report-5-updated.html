@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ButterflyMX — Social Strategy: The Two Open Doors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0E27;
+    --ink-2:#131840;
+    --paper:#F7F7FB;
+    --paper-2:#FFFFFF;
+    --indigo:#4F46E5;
+    --violet:#8B5CF6;
+    --pink:#EC4899;
+    --text-body:#3F4459;
+    --text-head:#12142B;
+    --text-dim:#8A8FB3;
+    --line:#E5E5F0;
+    --mint:#34D399;
+    --amber:#F59E0B;
+    --grad: linear-gradient(90deg, var(--indigo), var(--violet), var(--pink));
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text-body);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora', sans-serif;
+    color:var(--text-head);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:var(--indigo); }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  .report-layout{
+    max-width:1180px;
+    margin:0 auto;
+    padding:20px 24px 0;
+    display:grid;
+    grid-template-columns: 290px minmax(0,1fr);
+    gap:28px;
+    align-items:start;
+  }
+  .report-sidebar{
+    background: rgba(255,255,255,0.22);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px 14px 10px;
+    position:sticky;
+    top:20px;
+    box-shadow: 0 0 0 1px rgba(17,24,39,0.01);
+  }
+  .report-sidebar .sidebar-label{
+    display:block;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:#6A6F7F;
+    font-weight:700;
+    margin:4px 0 14px 8px;
+  }
+  .report-sidebar ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .report-sidebar li{ margin:0; }
+  .report-sidebar a{
+    display:block;
+    padding:6px 8px;
+    color:#4F5368;
+    font-size:15px;
+    line-height:1.45;
+    border-radius:8px;
+    text-decoration:none;
+  }
+  .report-sidebar a.active,
+  .report-sidebar a:hover{
+    background: rgba(139,92,246,0.08);
+    color:#5b2ec9;
+    font-weight:700;
+  }
+  .report-sidebar a.subtle{ color:#454b5d; }
+  .report-main{ min-width:0; }
+  .report-main .wrap{ max-width:820px; padding:0; }
+  .report-main section{ padding:22px 0 26px; }
+  .report-main .section-head{ max-width:100%; margin-bottom:28px; }
+
+  /* ---------- Eyebrow / tag ---------- */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--text-dim);
+    font-weight:500;
+  }
+  .eyebrow .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--grad);
+    box-shadow:0 0 8px rgba(139,92,246,0.8);
+    flex:none;
+  }
+  .eyebrow.on-dark{ color:#AEB3E0; }
+
+
+  [data-toc-section]{ scroll-margin-top:24px; }
+  .report-sidebar a{ position:relative; transition:background .18s ease,color .18s ease,transform .18s ease; }
+  .report-sidebar a::before{
+    content:""; position:absolute; left:-6px; top:8px; bottom:8px; width:3px; border-radius:99px;
+    background:linear-gradient(180deg,var(--indigo),var(--violet),var(--pink));
+    opacity:0; transform:scaleY(.5); transition:opacity .18s ease,transform .18s ease;
+  }
+  .report-sidebar a.active{ background:rgba(139,92,246,.10); color:#5b2ec9; font-weight:700; transform:translateX(2px); }
+  .report-sidebar a.active::before{ opacity:1; transform:scaleY(1); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(79,70,229,0.35), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(236,72,153,0.28), transparent 55%),
+      var(--ink);
+    color:#F2F3FF;
+    padding:64px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:34px 34px;
+    mask-image: radial-gradient(circle at 70% 20%, black, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom:44px; position:relative; z-index:1;
+    flex-wrap:wrap; gap:16px;
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; }
+  .brandmark img{ width:26px; height:26px; object-fit:contain; }
+  .brandmark span{ font-family:'Sora',sans-serif; font-weight:700; font-size:17px; color:#fff; }
+  .prepared-by{ text-align:right; font-size:13px; color:#AEB3E0; line-height:1.5; }
+  .prepared-by b{ color:#fff; font-weight:600; }
+
+  .hero h1{
+    position:relative; z-index:1;
+    font-size:52px; font-weight:800; line-height:1.06;
+    color:#fff; max-width:820px;
+    margin-top:18px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--grad);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{
+    position:relative; z-index:1;
+    max-width:640px; margin-top:20px;
+    font-size:17px; color:#C7CAF0;
+  }
+
+  .panel-row{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    margin-top:44px;
+  }
+  .panel{
+    background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border:1px solid rgba(255,255,255,0.09);
+    border-radius:14px;
+    padding:20px 20px 18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .panel::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--grad);
+  }
+  .panel .num{
+    font-family:'IBM Plex Mono', monospace; font-weight:600;
+    font-size:34px; color:#fff;
+    text-shadow:0 0 22px rgba(139,92,246,0.55);
+  }
+  .panel .label{ font-size:13px; color:#AEB3E0; margin-top:6px; }
+  .panel .src{ font-size:11px; color:#6C71A0; margin-top:10px; font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{ padding:72px 0; }
+  section.tight{ padding:48px 0; }
+  .section-head{ max-width:680px; margin-bottom:40px; }
+  .section-head h2{ font-size:32px; font-weight:700; margin-top:12px; line-height:1.15; }
+  .section-head p{ margin-top:12px; font-size:16px; color:var(--text-body); }
+  .divider{ height:1px; background:var(--line); border:none; margin:0; }
+
+  /* ---------- Current state cards ---------- */
+  .diag-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .diag-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:16px;
+    padding:26px; position:relative;
+  }
+  .diag-card .tag{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase; padding:4px 9px; border-radius:99px;
+    margin-bottom:14px;
+  }
+  .tag.meta{ background:rgba(79,70,229,0.1); color:var(--indigo); }
+  .tag.reddit{ background:rgba(236,72,153,0.1); color:var(--pink); }
+  .diag-card h3{ font-size:19px; margin-bottom:10px; }
+  .diag-card p{ font-size:14.5px; color:var(--text-body); }
+  .chip-row{ display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; }
+  .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+    background:var(--ink); color:#fff; padding:6px 10px; border-radius:8px;
+  }
+
+  /* ---------- Goals ---------- */
+  .goal-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .goal-card{
+    border:1px solid var(--line); border-radius:14px; padding:20px 18px;
+    background:var(--paper-2);
+  }
+  .goal-card .g-num{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--violet); font-weight:600;
+  }
+  .goal-card h4{ font-size:15.5px; margin-top:10px; line-height:1.35; font-weight:600; }
+
+  /* ---------- Stat mosaic (reddit study numbers) ---------- */
+  .stat-mosaic{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .stat-card{
+    background:var(--ink); border-radius:14px; padding:20px 18px; color:#fff;
+    position:relative; overflow:hidden;
+  }
+  .stat-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad); }
+  .stat-card .num{ font-family:'IBM Plex Mono',monospace; font-size:28px; font-weight:600; }
+  .stat-card .lab{ font-size:13px; color:#C7CAF0; margin-top:5px; }
+
+  /* ---------- Callout stat inline ---------- */
+  .stat-line{
+    display:flex; gap:18px; align-items:baseline;
+    border-left:3px solid transparent;
+    border-image:var(--grad) 1;
+    padding-left:16px; margin:22px 0;
+  }
+  .stat-line .big{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:26px; color:var(--text-head); white-space:nowrap;}
+  .stat-line .desc{ font-size:14.5px; color:var(--text-body); }
+  .stat-line .desc .src{ display:block; font-size:11.5px; color:var(--text-dim); margin-top:3px; font-family:'IBM Plex Mono',monospace;}
+
+  .impact-wrap{
+    display:grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap:18px;
+    align-items:stretch;
+    margin:18px 0 30px;
+  }
+  .stat-callout{
+    position:relative;
+    padding:22px 22px 18px;
+    border-radius:18px;
+    border:1px solid rgba(220,38,38,0.25);
+    background:linear-gradient(135deg, rgba(254,226,226,0.9), rgba(255,255,255,0.78));
+    box-shadow:0 14px 28px rgba(153,27,27,0.12);
+  }
+  .stat-callout::before{
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:4px;
+    border-radius:18px 0 0 18px;
+    background:linear-gradient(180deg, #ef4444, #b91c1c);
+  }
+  .stat-callout .big{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:32px;
+    line-height:1.1;
+    letter-spacing:-0.04em;
+    color:#b91c1c;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .stat-callout .desc{
+    font-size:15px;
+    line-height:1.5;
+    color:#4b1720;
+    font-weight:600;
+  }
+  .stat-callout .src{
+    display:block;
+    margin-top:10px;
+    font-size:11.5px;
+    letter-spacing:0.02em;
+    color:#7f1d1d;
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+  }
+  .donut-card{
+    position:relative;
+    background:linear-gradient(180deg, #fff7f7, #fff);
+    border:1px solid rgba(220,38,38,0.2);
+    border-radius:18px;
+    padding:18px 18px 14px;
+    box-shadow:0 10px 18px rgba(127,29,29,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .pie-chart {
+    position:relative;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:conic-gradient(#ef4444 0 54%, #fca5a5 54% 100%);
+    box-shadow: inset 0 0 0 1px rgba(185,28,28,0.1);
+    flex:none;
+  }
+  .pie-chart::after{
+    content:"";
+    position:absolute;
+    inset:22px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:inset 0 0 0 1px rgba(185,28,28,0.12);
+  }
+  .pie-center{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    z-index:1;
+  }
+  .pie-center strong{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:28px;
+    color:#991b1b;
+    line-height:1;
+  }
+  .pie-center span{
+    display:block;
+    font-size:10px;
+    color:#7a1d1d;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:700;
+    margin-top:4px;
+  }
+  .legend{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-width:0;
+    flex:1;
+  }
+  .legend li{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:#4b1720;
+    font-weight:600;
+  }
+  .legend i{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    display:inline-block;
+  }
+  .legend .red{ background:#ef4444; }
+  .legend .pink{ background:#fca5a5; }
+
+  /* ---------- Process steps (meta ad workflow) ---------- */
+  .flow{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:10px; margin:36px 0; }
+  .flow .fstep{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:14px; padding:18px;
+    text-align:center;
+  }
+  .flow .fstep .fnum{
+    width:26px; height:26px; border-radius:50%; background:var(--grad); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+    font-size:12px; font-weight:600; margin:0 auto 10px;
+  }
+  .flow .fstep h5{ font-family:'Sora',sans-serif; font-size:14.5px; font-weight:600; color:var(--text-head); }
+  .flow .fstep p{ font-size:12.5px; color:var(--text-dim); margin-top:5px; }
+  .flow .arrow{ color:var(--text-dim); font-size:18px; }
+
+  figure{ margin:0; }
+  figure img{ border-radius:12px; border:1px solid var(--line); }
+  figcaption{ font-size:12.5px; color:var(--text-dim); margin-top:8px; font-family:'IBM Plex Mono',monospace;}
+
+  .creative-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; margin-top:8px;}
+
+
+  /* ---------- Visual Meta creative workflow showcase ---------- */
+  .creative-flow-showcase{
+    --flow-blue:#4F46E5;
+    --flow-violet:#8B5CF6;
+    --flow-pink:#EC4899;
+    position:relative;
+    margin:28px 0 34px;
+    padding:26px 18px 20px;
+    border:1px solid rgba(139,92,246,.14);
+    border-radius:24px;
+    background:
+      radial-gradient(420px 240px at 4% 12%, rgba(79,70,229,.09), transparent 70%),
+      radial-gradient(440px 260px at 96% 16%, rgba(236,72,153,.08), transparent 72%),
+      linear-gradient(135deg,#fbfbff 0%,#fff 48%,#fbf8ff 100%);
+    box-shadow:0 22px 60px rgba(49,46,129,.08);
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .creative-flow-showcase::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(79,70,229,.22) .7px, transparent .7px);
+    background-size:15px 15px;
+    opacity:.16;
+    mask-image:linear-gradient(to bottom,#000,transparent 70%);
+    pointer-events:none;
+  }
+  .creative-flow-kicker{
+    position:relative; z-index:3;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    margin:0 0 24px;
+    font-family:'IBM Plex Mono',monospace;
+    color:#5c6280; font-size:11px; font-weight:600;
+    letter-spacing:.11em; text-transform:uppercase;
+  }
+  .creative-flow-kicker::before{
+    content:"✦";
+    font-size:14px;
+    background:linear-gradient(90deg,var(--flow-blue),var(--flow-pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .creative-flow-stage{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1.25fr 1.05fr 1.25fr;
+    gap:22px;
+    align-items:center;
+    min-height:330px;
+  }
+  .creative-flow-ribbon{
+    position:absolute;
+    z-index:0;
+    left:-5%;
+    top:75px;
+    width:110%;
+    height:230px;
+    pointer-events:none;
+    overflow:visible;
+    filter:drop-shadow(0 12px 18px rgba(124,58,237,.15));
+  }
+  .creative-flow-ribbon .main{
+    fill:none;
+    stroke:url(#metaFlowGradient);
+    stroke-width:34;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    opacity:.94;
+  }
+  .creative-flow-ribbon .shine{
+    fill:none;
+    stroke:rgba(255,255,255,.52);
+    stroke-width:6;
+    stroke-linecap:round;
+    stroke-dasharray:34 42;
+    animation:metaFlowDrift 4.5s linear infinite;
+    opacity:.68;
+  }
+  @keyframes metaFlowDrift{ to{ stroke-dashoffset:-152; } }
+  .creative-flow-step{ position:relative; z-index:2; min-width:0; }
+  .creative-flow-step:nth-of-type(2){ transform:translateY(10px); }
+  .creative-flow-pill{
+    width:max-content; max-width:100%;
+    margin:0 auto 12px;
+    padding:7px 12px;
+    border-radius:999px;
+    color:#fff;
+    font-family:'Sora',sans-serif;
+    font-size:11.5px;
+    font-weight:700;
+    line-height:1;
+    white-space:nowrap;
+    box-shadow:0 8px 18px rgba(79,70,229,.16);
+  }
+  .creative-flow-step:nth-of-type(1) .creative-flow-pill{background:linear-gradient(90deg,#4147ea,#6651ee);}
+  .creative-flow-step:nth-of-type(2) .creative-flow-pill{background:linear-gradient(90deg,#6d4fe8,#9a56e9);}
+  .creative-flow-step:nth-of-type(3) .creative-flow-pill{background:linear-gradient(90deg,#d83d8e,#ef4d98);}
+  .creative-flow-card{
+    position:relative;
+    width:100%;
+    padding:8px;
+    border-radius:18px;
+    background:rgba(255,255,255,.95);
+    border:1px solid rgba(255,255,255,.92);
+    box-shadow:0 18px 34px rgba(30,27,75,.12),0 3px 10px rgba(30,27,75,.07);
+    overflow:hidden;
+    cursor:pointer;
+    font:inherit;
+    text-align:left;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .creative-flow-card:hover{ transform:translateY(-3px); box-shadow:0 22px 40px rgba(30,27,75,.16),0 3px 10px rgba(30,27,75,.07); }
+  .creative-flow-card:focus-visible{ outline:3px solid rgba(139,92,246,.28); outline-offset:3px; }
+  .creative-flow-card::after{
+    content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+    box-shadow:inset 0 0 0 1px rgba(79,70,229,.08);
+  }
+  .creative-flow-img{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .creative-flow-step.input .creative-flow-img{ aspect-ratio:1.2/1; }
+  .creative-flow-step.workflow .creative-flow-img{ aspect-ratio:1.55/1; }
+  .creative-flow-step.output .creative-flow-img{ aspect-ratio:1/1; background:#081436; }
+  .creative-flow-img img{ width:100%; height:100%; display:block; object-fit:cover; border:0; border-radius:0; }
+  .creative-flow-step.input img{ object-position:12% center; }
+  .creative-flow-step.input img{ object-fit:contain; }
+  .creative-flow-step.workflow img{ object-fit:contain; padding:2px; }
+  .creative-flow-step.output img{ object-position:center; }
+  .creative-flow-notes{
+    position:relative; z-index:3;
+    display:grid; grid-template-columns:1.25fr 1.05fr 1.25fr; gap:22px;
+    margin-top:22px;
+  }
+  .creative-flow-note{
+    display:grid; grid-template-columns:36px 1fr; gap:10px; align-items:start; min-width:0;
+  }
+  .creative-flow-note + .creative-flow-note{ border-left:1px dashed rgba(79,70,229,.22); padding-left:16px; }
+  .creative-flow-icon{
+    width:36px; height:36px; border-radius:50%; display:grid; place-items:center;
+    color:#fff; font-size:16px; font-weight:700;
+    background:linear-gradient(135deg,var(--flow-blue),var(--flow-violet),var(--flow-pink));
+    box-shadow:0 8px 18px rgba(139,92,246,.22);
+  }
+  .creative-flow-note h5{ margin:1px 0 3px; font-family:'Sora',sans-serif; color:var(--text-head); font-size:12px; line-height:1.25; }
+  .creative-flow-note p{ margin:0; font-size:11px; line-height:1.45; color:#596075; }
+  @media (prefers-reduced-motion:reduce){ .creative-flow-ribbon .shine{ animation:none; } }
+  @media (max-width:860px){
+    .creative-flow-showcase{ padding:22px 14px; }
+    .creative-flow-stage{ grid-template-columns:1fr; gap:24px; max-width:540px; margin:0 auto; }
+    .creative-flow-step:nth-of-type(2){ transform:none; }
+    .creative-flow-ribbon{ display:none; }
+    .creative-flow-step{ display:grid; grid-template-columns:1fr; }
+    .creative-flow-step::after{
+      content:"↓"; display:block; text-align:center; margin:13px auto -8px;
+      font-size:25px; font-weight:800;
+      background:linear-gradient(180deg,var(--flow-blue),var(--flow-violet),var(--flow-pink));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .creative-flow-step:last-child::after{ display:none; }
+    .creative-flow-step.input .creative-flow-img{ aspect-ratio:1.15/1; }
+    .creative-flow-step.workflow .creative-flow-img{ aspect-ratio:1.55/1; }
+    .creative-flow-step.output .creative-flow-img{ aspect-ratio:1/1; }
+    .creative-flow-notes{ grid-template-columns:1fr; max-width:540px; margin:24px auto 0; gap:14px; }
+    .creative-flow-note + .creative-flow-note{ border-left:0; padding-left:0; border-top:1px dashed rgba(79,70,229,.22); padding-top:14px; }
+  }
+
+
+
+
+  /* ---------- Reddit strategy showcase ---------- */
+  .reddit-visual-shell{ margin-top:26px; }
+  .ai-visibility-card{
+    background:linear-gradient(135deg,#f7f5fb 0%,#fbfbff 46%,#f8f6fc 100%);
+    border:1px solid #e9e3f4; border-radius:24px; padding:22px 22px 24px;
+    box-shadow:0 18px 42px rgba(31,41,55,.06);
+  }
+  .ai-kicker{
+    display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+    background:rgba(139,92,246,.12); color:#7b4fe0; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  }
+  .ai-kicker::before{ content:""; width:7px; height:7px; border-radius:50%; background:linear-gradient(90deg,var(--indigo),var(--pink)); box-shadow:0 0 10px rgba(139,92,246,.6); }
+  .ai-title-row{ display:flex; align-items:center; gap:12px; margin:12px 0 18px; }
+  .ai-stepdot{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:14px; background:linear-gradient(135deg,var(--indigo),var(--violet)); }
+  .ai-title-row h3{ font-size:24px; line-height:1.15; }
+  .ai-banner{
+    border-radius:16px; padding:16px 20px; color:#fff; background:linear-gradient(90deg,#9557ef 0%, #7d4bdf 100%);
+    box-shadow:0 16px 28px rgba(123,79,224,.24); margin-bottom:18px;
+  }
+  .ai-banner strong{ display:block; font-family:'Sora',sans-serif; font-size:38px; line-height:1; letter-spacing:-.04em; }
+  .ai-banner span{ display:block; margin-top:6px; color:#e3d8ff; font-size:14px; }
+  .ai-visibility-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:18px; align-items:start; }
+  .ai-mini-stats{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 18px; margin-bottom:16px; }
+  .ai-mini-stat strong{ display:block; font-size:28px; line-height:1; color:#1b1d30; font-family:'Sora',sans-serif; }
+  .ai-mini-stat span{ display:block; margin-top:5px; font-size:12.5px; color:#646c84; line-height:1.35; }
+  .ai-copy p{ margin:0 0 12px; font-size:14px; color:#535970; }
+  .ai-copy ul{ margin:0 0 14px; padding-left:18px; }
+  .ai-copy li{ margin-bottom:8px; font-size:13.6px; color:#4b5268; }
+  .ai-chart-card,.ai-quote-card,.ai-source-card,.ai-risk-card{
+    background:rgba(255,255,255,.9); border:1px solid #e6e0ef; border-radius:16px; padding:14px 16px;
+  }
+  .ai-chart-card{ margin-bottom:12px; }
+  .ai-card-title{ font-size:12px; color:#666d84; margin-bottom:10px; }
+  .ai-bar-row{ margin-bottom:10px; }
+  .ai-bar-row:last-child{ margin-bottom:0; }
+  .ai-bar-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:12px; color:#5d657d; margin-bottom:6px; }
+  .ai-track{ height:14px; background:#ece8f1; border-radius:999px; overflow:hidden; }
+  .ai-fill{ height:100%; border-radius:999px; }
+  .ai-fill.reddit{ width:100%; background:#9b73e8; }
+  .ai-fill.blog{ width:21.3%; background:#9aa7bf; }
+  .ai-fill.product{ width:17%; background:#6d7f9f; }
+  .ai-fill.news{ width:31.9%; background:#7080a3; }
+  .ai-quote-card{ position:relative; margin-bottom:12px; background:#fbf8ff; }
+  .ai-quote-card::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:16px 0 0 16px; background:linear-gradient(180deg,var(--indigo),var(--pink)); }
+  .ai-quote-card blockquote{ margin:0; padding-left:14px; font-size:13.8px; line-height:1.6; color:#40465b; }
+  .ai-quote-card cite{ display:block; margin-top:10px; color:#8a90a8; font-size:12px; font-style:normal; }
+  .ai-source-card h5{ margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#656d84; }
+  .ai-source-card ul{ list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+  .ai-source-card li{ font-size:12.5px; color:#61697f; }
+  .ai-risk-card{ margin-top:16px; background:linear-gradient(135deg, rgba(10,14,39,.98), rgba(31,36,68,.98)); color:#fff; border-color:rgba(255,255,255,.06); }
+  .ai-risk-card h4{ color:#fff; font-size:18px; margin-bottom:8px; }
+  .ai-risk-card p{ color:#c6cbea; font-size:14px; margin:0 0 14px; }
+  .ai-risk-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .ai-risk-stat{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:14px; }
+  .ai-risk-stat strong{ display:block; font-family:'Sora',sans-serif; font-size:28px; line-height:1; color:#fff; }
+  .ai-risk-stat span{ display:block; margin-top:6px; font-size:12px; line-height:1.45; color:#c7caf0; }
+  .reddit-panel-title{ margin:34px 0 10px; }
+  .reddit-panel-title h3{ font-size:32px; line-height:1.1; }
+  .reddit-panel-title p{ margin-top:8px; font-size:15px; color:#5d647a; }
+  .playbook-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:18px; }
+  .playbook-card{ background:#fff; border:1px solid #e4e6ef; border-radius:16px; padding:16px 16px 18px; box-shadow:0 10px 22px rgba(17,24,39,.05); }
+  .playbook-top{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .playbook-icon{ width:38px; height:38px; border-radius:10px; display:grid; place-items:center; font-size:18px; color:#8b5cf6; background:rgba(139,92,246,.14); }
+  .playbook-step{ font-size:12px; font-weight:700; color:#8b5cf6; }
+  .playbook-card h4{ font-size:16px; margin-bottom:8px; }
+  .playbook-card p{ margin:0; font-size:13.6px; line-height:1.55; color:#5c6378; }
+  .mistakes-stack{ display:grid; gap:12px; margin-top:18px; }
+  .mistake-card{ display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start; background:#fff; border-radius:16px; border:1px solid #ede2df; padding:14px 16px; box-shadow:0 8px 18px rgba(17,24,39,.03); }
+  .mistake-card .alert{ width:16px; height:16px; margin-top:4px; position:relative; }
+  .mistake-card .alert::before{ content:"⚠"; color:#ef4444; font-size:14px; line-height:1; }
+  .mistake-card h4{ font-size:15px; margin:0 0 6px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .risk-badge{ font-size:11px; font-weight:700; padding:3px 7px; border-radius:999px; }
+  .risk-badge.critical{ background:#fee2e2; color:#dc2626; }
+  .risk-badge.high{ background:#ffedd5; color:#ea580c; }
+  .risk-badge.medium{ background:#fef3c7; color:#ca8a04; }
+  .mistake-card p{ margin:0; font-size:13.4px; line-height:1.55; color:#5d6479; }
+  .mistake-card.critical{ border-color:#f5b3af; background:#fff8f8; }
+  .mistake-card.high{ border-color:#f5c99d; background:#fffaf4; }
+  .mistake-card.medium{ border-color:#efe08f; background:#fffdf2; }
+
+
+
+  /* ---------- Workflow resource tiles ---------- */
+  .rollout-carousel-wrap{ margin:34px 0 28px; }
+  .rollout-intro{ margin:8px 0 14px; font-size:13.8px; color:#666e84; max-width:760px; }
+  .rollout-carousel{
+    position:relative;
+    background:linear-gradient(135deg,#fbfbff 0%, #fff 48%, #f8f7ff 100%);
+    border:1px solid rgba(139,92,246,.16);
+    border-radius:24px;
+    box-shadow:0 20px 46px rgba(49,46,129,.08);
+    overflow:hidden;
+  }
+  .rollout-carousel::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(380px 180px at 8% 18%, rgba(79,70,229,.08), transparent 72%), radial-gradient(360px 220px at 92% 82%, rgba(236,72,153,.06), transparent 70%);
+    pointer-events:none;
+  }
+  .rollout-carousel-head{
+    position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 18px 10px;
+  }
+  .rollout-carousel-meta{ display:flex; align-items:center; gap:10px; }
+  .rollout-step-badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%; color:#fff;
+    background:linear-gradient(135deg,var(--indigo),var(--violet));
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700;
+    box-shadow:0 8px 18px rgba(79,70,229,.2);
+  }
+  .rollout-eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#727a95; }
+  .rollout-title{ font-size:17px; color:var(--text-head); font-family:'Sora',sans-serif; font-weight:700; margin-top:3px; }
+  .rollout-related{ font-size:12px; color:#7b8299; }
+  .rollout-controls{ display:flex; align-items:center; gap:8px; }
+  .rollout-btn{
+    width:40px; height:40px; border-radius:12px; border:1px solid rgba(139,92,246,.18);
+    background:#fff; color:#4F46E5; font-size:20px; line-height:1; cursor:pointer;
+    box-shadow:0 10px 18px rgba(79,70,229,.08);
+  }
+  .rollout-btn:hover{ transform:translateY(-1px); }
+  .rollout-viewport{ position:relative; z-index:1; overflow:hidden; }
+  .rollout-track{ display:flex; transition:transform .38s ease; will-change:transform; }
+  .rollout-slide{ min-width:100%; padding:6px 18px 22px; }
+  .rollout-card{
+    min-height:400px;
+    display:grid; grid-template-columns:1.05fr .95fr; gap:22px; align-items:stretch;
+    background:rgba(255,255,255,.86);
+    border:1px solid rgba(229,229,240,.95); border-radius:20px;
+    padding:18px;
+  }
+  .rollout-copy h4{ font-size:28px; line-height:1.08; margin-bottom:10px; }
+  .rollout-copy p{ font-size:14px; line-height:1.6; color:#5b637a; margin:0 0 10px; }
+  .rollout-copy ul{ margin:14px 0 0; padding-left:18px; display:grid; gap:8px; }
+  .rollout-copy li{ font-size:13.7px; line-height:1.5; color:#495068; }
+  .rollout-impact{
+    margin-top:14px; padding:12px 14px; border-radius:14px;
+    background:linear-gradient(90deg, rgba(79,70,229,.08), rgba(236,72,153,.08));
+    border:1px solid rgba(139,92,246,.16);
+  }
+  .rollout-impact strong{ display:block; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#5f6580; margin-bottom:5px; }
+  .rollout-impact span{ font-size:13.5px; line-height:1.5; color:#404760; }
+  .rollout-visual{
+    position:relative; border-radius:18px; padding:16px;
+    background:linear-gradient(180deg,#0f1732 0%, #162347 100%);
+    overflow:hidden; color:#fff;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .rollout-visual::before{
+    content:""; position:absolute; inset:auto -40px -60px auto; width:180px; height:180px;
+    background:radial-gradient(circle, rgba(236,72,153,.26), transparent 68%); pointer-events:none;
+  }
+  .rollout-visual-head{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .rollout-visual-head .label{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#aeb8ec; }
+  .rollout-visual-head .metric{ font-size:12px; color:#e5e9ff; padding:5px 9px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08); }
+  .rollout-graph{ position:relative; z-index:1; flex:1; display:flex; align-items:center; justify-content:center; margin:12px 0; }
+  .rollout-caption{ position:relative; z-index:1; font-size:12.5px; color:#cad1ef; line-height:1.5; }
+  .rollout-study-stack{ width:100%; display:grid; gap:12px; }
+  .rollout-study-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+    border-radius:16px; padding:14px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .rollout-study-title{ font-size:12px; color:#dbe4ff; margin-bottom:10px; }
+  .rollout-study-source{ margin-top:10px; font-size:10px; color:#95a3d7; letter-spacing:.06em; text-transform:uppercase; }
+  .rollout-study-rows{ display:grid; gap:9px; }
+  .rollout-study-row{ display:grid; grid-template-columns:1fr 44px; gap:10px; align-items:center; }
+  .rollout-study-row.compact{ grid-template-columns:90px 1fr 38px; }
+  .rollout-study-row span{ font-size:11px; color:#edf2ff; }
+  .rollout-study-row b{ font-size:11px; color:#edf2ff; text-align:right; }
+  .rollout-study-track{ height:16px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden; }
+  .rollout-study-fill{ height:100%; border-radius:999px; }
+  .rollout-quote-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:14px;
+    position:relative;
+  }
+  .rollout-quote-card::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:16px 0 0 16px; background:linear-gradient(180deg,var(--indigo),var(--pink)); }
+  .rollout-quote-card blockquote{ margin:0; padding-left:12px; font-size:13px; line-height:1.55; color:#eef2ff; }
+  .rollout-quote-card cite{ display:block; margin-top:10px; padding-left:12px; font-size:10.5px; color:#aab6e7; font-style:normal; text-transform:uppercase; letter-spacing:.06em; }
+  .rollout-stat-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .rollout-stat-mini{ padding:12px; border-radius:14px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.05); }
+  .rollout-stat-mini strong{ display:block; font-family:'Sora',sans-serif; font-size:28px; line-height:1; color:#fff; }
+  .rollout-stat-mini span{ display:block; margin-top:6px; font-size:11px; color:#d8e1ff; line-height:1.45; }
+
+  .rollout-dots{ position:relative; z-index:1; display:flex; justify-content:center; gap:8px; padding:0 0 18px; }
+  .rollout-dot{ width:9px; height:9px; border-radius:50%; border:none; background:#d4d8e8; cursor:pointer; }
+  .rollout-dot.active{ background:linear-gradient(90deg,var(--indigo),var(--pink)); box-shadow:0 0 0 4px rgba(139,92,246,.13); }
+  .legacy-bars{ width:100%; display:grid; gap:12px; }
+  .legacy-row{ display:grid; grid-template-columns:72px 1fr 52px; gap:10px; align-items:center; }
+  .legacy-lbl{ font-size:11px; color:#c9d4ff; text-transform:uppercase; letter-spacing:.08em; }
+  .legacy-track{ height:16px; border-radius:999px; background:rgba(255,255,255,.09); overflow:hidden; }
+  .legacy-fill{ height:100%; border-radius:999px; }
+  .legacy-fill.blue{ width:92%; background:#4ea6ff; }
+  .legacy-fill.green{ width:78%; background:#32d583; }
+  .legacy-fill.red{ width:38%; background:#ff5f6d; }
+  .legacy-val{ font-size:11px; color:#e5ecff; text-align:right; }
+  .flag-note{ margin-top:14px; display:flex; gap:10px; align-items:flex-start; padding:12px; border-radius:14px; background:rgba(255,95,109,.12); border:1px solid rgba(255,95,109,.24); }
+  .flag-note .icon{ width:24px; height:24px; border-radius:8px; display:grid; place-items:center; background:#ff5f6d; color:#fff; font-size:13px; font-weight:700; }
+  .flag-note p{ margin:0; font-size:12px; line-height:1.5; color:#ffe6e9; }
+  .seed-graph{ width:100%; display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:10px; }
+  .seed-col{ display:grid; gap:10px; }
+  .seed-node{ padding:12px 10px; border-radius:14px; text-align:center; font-size:12px; line-height:1.35; border:1px solid rgba(255,255,255,.08); }
+  .seed-node.blue{ background:rgba(78,166,255,.16); color:#d9efff; }
+  .seed-node.green{ background:rgba(50,213,131,.16); color:#dcfff0; }
+  .seed-node.red{ background:rgba(255,95,109,.16); color:#ffe7ea; }
+  .seed-arrow{ width:24px; height:4px; border-radius:999px; background:linear-gradient(90deg,#4ea6ff,#32d583); }
+  .seed-meter{ margin-top:14px; }
+  .seed-meter .meter-label{ display:flex; justify-content:space-between; font-size:11px; color:#d7e4ff; margin-bottom:6px; }
+  .seed-meter .meter-track{ height:18px; border-radius:999px; background:rgba(255,255,255,.09); overflow:hidden; display:flex; }
+  .seed-meter .meter-track span:nth-child(1){ width:24%; background:#ff5f6d; }
+  .seed-meter .meter-track span:nth-child(2){ width:31%; background:#4ea6ff; }
+  .seed-meter .meter-track span:nth-child(3){ width:45%; background:#32d583; }
+  .community-graph{ width:100%; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .community-panel{ padding:14px; border-radius:16px; border:1px solid rgba(255,255,255,.08); }
+  .community-panel.red{ background:rgba(255,95,109,.12); }
+  .community-panel.green{ background:rgba(50,213,131,.12); }
+  .community-panel h5{ font-size:12px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; color:#fff; }
+  .community-stack{ display:grid; gap:8px; }
+  .community-bubble{ padding:9px 10px; border-radius:12px; font-size:11.8px; line-height:1.35; }
+  .community-panel.red .community-bubble{ background:rgba(255,255,255,.08); color:#ffdadd; }
+  .community-panel.green .community-bubble{ background:rgba(255,255,255,.08); color:#ddfff0; }
+  .community-growth{ margin-top:14px; display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:end; }
+  .community-bar{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .community-bar span{ width:54px; border-radius:14px 14px 6px 6px; }
+  .community-bar small{ font-size:11px; color:#d2dbff; text-align:center; }
+  .community-bar .low{ height:54px; background:#ff5f6d; }
+  .community-bar .high{ height:128px; background:#32d583; }
+  .community-growth .arrow{ align-self:center; color:#4ea6ff; font-size:26px; }
+  .loop-graph{ width:100%; display:grid; gap:16px; }
+  .track-context-graphic{ width:100%; display:grid; gap:14px; }
+  .track-flow-band{
+    display:grid; grid-template-columns:1.08fr .8fr .92fr; gap:12px; align-items:stretch;
+  }
+  .track-panel{
+    border-radius:16px; padding:13px 12px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.06);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    min-height:176px;
+  }
+  .track-panel h5{
+    margin:0 0 10px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#d7e2ff;
+  }
+  .track-subhead{ font-size:10px; color:#aeb8ec; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+  .track-keyword-list{ display:grid; gap:8px; }
+  .track-keyword{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:8px 10px; border-radius:12px; background:rgba(78,166,255,.12); color:#e1f1ff; font-size:11px;
+  }
+  .track-keyword .tag{ font-size:10px; padding:3px 6px; border-radius:999px; background:rgba(78,166,255,.2); color:#bfe2ff; }
+  .track-thread-stack{ display:grid; gap:8px; }
+  .track-thread{
+    padding:9px 10px; border-radius:12px; background:rgba(50,213,131,.12); color:#e6fff3; font-size:11px; line-height:1.35;
+  }
+  .track-thread .meta{ display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:#bcefd5; }
+  .track-signal-stack{ display:grid; gap:8px; }
+  .track-signal{
+    padding:8px 10px; border-radius:12px; background:rgba(255,95,109,.12); color:#ffe8eb; font-size:11px; line-height:1.32;
+  }
+  .track-signal .risk{ display:inline-flex; margin-top:6px; padding:3px 6px; border-radius:999px; background:rgba(255,95,109,.16); color:#ffc3c9; font-size:10px; }
+  .track-arrow-row{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:8px; align-items:center; margin-top:6px; }
+  .track-mini-arrow{
+    width:30px; height:4px; border-radius:999px; background:linear-gradient(90deg,#4ea6ff,#32d583);
+  }
+  .track-mini-arrow.red{ background:linear-gradient(90deg,#32d583,#ff5f6d); }
+  .track-impact-strip{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:12px; align-items:stretch;
+  }
+  .track-surface-card,
+  .track-actions-card{
+    border-radius:15px; padding:12px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.05);
+  }
+  .track-surface-bars{ display:grid; gap:8px; margin-top:8px; }
+  .track-surface-row{ display:grid; grid-template-columns:70px 1fr 40px; gap:8px; align-items:center; }
+  .track-surface-row span{ font-size:10px; color:#ced9ff; text-transform:uppercase; letter-spacing:.08em; }
+  .track-surface-row b{ font-size:10px; color:#f1f4ff; text-align:right; }
+  .track-surface-track{ height:12px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden; }
+  .track-surface-fill{ height:100%; border-radius:999px; }
+  .track-surface-fill.search{ width:88%; background:#4ea6ff; }
+  .track-surface-fill.ai{ width:73%; background:#32d583; }
+  .track-surface-fill.memory{ width:81%; background:#9b7bff; }
+  .track-actions-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
+  .track-action-pill{
+    display:grid; place-items:center; min-height:48px; border-radius:12px; font-size:11px; text-align:center;
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .track-action-pill.blue{ background:rgba(78,166,255,.13); color:#d9efff; }
+  .track-action-pill.red{ background:rgba(255,95,109,.13); color:#ffe3e7; }
+  .track-action-pill.green{ background:rgba(50,213,131,.13); color:#ddfff1; }
+  .rollout-caution{
+    margin-top:12px; padding:12px 14px; border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,95,109,.12), rgba(255,95,109,.08));
+    border:1px solid rgba(255,95,109,.24);
+    box-shadow:0 10px 18px rgba(255,95,109,.08);
+  }
+  .rollout-caution strong{ display:block; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#b42318; margin-bottom:5px; }
+  .rollout-caution span{ font-size:13.3px; line-height:1.5; color:#7a2730; }
+  .track-vertical-graphic{ width:100%; display:grid; gap:12px; }
+  .track-vertical-step{ display:grid; grid-template-columns:24px 1fr; gap:12px; align-items:stretch; }
+  .track-vertical-rail{ position:relative; display:flex; justify-content:center; }
+  .track-vertical-rail::before{ content:""; position:absolute; top:8px; bottom:-14px; width:3px; border-radius:999px; background:rgba(255,255,255,.12); }
+  .track-vertical-step:last-child .track-vertical-rail::before{ bottom:8px; }
+  .track-vertical-dot{ position:relative; z-index:1; width:16px; height:16px; border-radius:50%; margin-top:6px; box-shadow:0 0 0 4px rgba(255,255,255,.03); }
+  .track-vertical-dot.blue{ background:#4ea6ff; }
+  .track-vertical-dot.green{ background:#32d583; }
+  .track-vertical-dot.red{ background:#ff5f6d; }
+  .track-vertical-card{
+    border-radius:15px; padding:12px 12px 11px;
+    border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.06);
+  }
+  .track-vertical-card.blue{ background:linear-gradient(180deg, rgba(78,166,255,.14), rgba(78,166,255,.09)); }
+  .track-vertical-card.green{ background:linear-gradient(180deg, rgba(50,213,131,.14), rgba(50,213,131,.09)); }
+  .track-vertical-card.red{ background:linear-gradient(180deg, rgba(255,95,109,.14), rgba(255,95,109,.09)); }
+  .track-vertical-card h5{ margin:0 0 5px; font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:#f0f4ff; }
+  .track-vertical-card p{ margin:0; font-size:11.6px; line-height:1.45; color:#d7def7; }
+  .track-chip-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .track-chip{ padding:4px 7px; border-radius:999px; font-size:10px; letter-spacing:.02em; }
+  .track-chip.blue{ background:rgba(78,166,255,.16); color:#cce9ff; }
+  .track-chip.green{ background:rgba(50,213,131,.16); color:#d9fff0; }
+  .track-chip.red{ background:rgba(255,95,109,.16); color:#ffd8dd; }
+  .track-mini-impact{
+    margin-top:4px; padding:12px; border-radius:15px;
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+  }
+  .track-mini-impact .label{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:#c9d4ff; margin-bottom:8px; }
+  .track-mini-impact-grid{ display:grid; gap:8px; }
+  .track-mini-impact-row{ display:grid; grid-template-columns:72px 1fr 44px; gap:8px; align-items:center; }
+  .track-mini-impact-row span{ font-size:10px; color:#d8e0fb; text-transform:uppercase; letter-spacing:.08em; }
+  .track-mini-impact-row b{ font-size:10px; color:#eff4ff; text-align:right; }
+  .track-mini-impact-track{ height:12px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden; }
+  .track-mini-impact-fill{ height:100%; border-radius:999px; }
+  .track-mini-impact-fill.blue{ width:86%; background:#4ea6ff; }
+  .track-mini-impact-fill.green{ width:72%; background:#32d583; }
+  .track-mini-impact-fill.red{ width:64%; background:#ff5f6d; }
+
+  .loop-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; align-items:center; }
+  .loop-node{ min-height:72px; padding:12px 10px; border-radius:14px; text-align:center; font-size:12px; line-height:1.35; border:1px solid rgba(255,255,255,.08); display:grid; place-items:center; }
+  .loop-node.blue{ background:rgba(78,166,255,.14); color:#dff1ff; }
+  .loop-node.green{ background:rgba(50,213,131,.14); color:#dffcef; }
+  .loop-node.red{ background:rgba(255,95,109,.14); color:#ffe9eb; }
+  .loop-arrow-band{ height:4px; border-radius:999px; background:linear-gradient(90deg,#ff5f6d,#4ea6ff,#32d583); margin:-4px 28px 0; }
+
+  .resource-tiles-wrap{ margin:30px 0 34px; }
+  .resource-tiles-head{ display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:14px; }
+  .resource-tiles-head h3{ font-size:20px; }
+  .resource-tiles-head p{ margin:4px 0 0; font-size:13.5px; color:#686f85; }
+  .resource-tiles{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+  }
+  .resource-tile{
+    appearance:none;
+    width:100%;
+    min-width:0;
+    text-align:left;
+    padding:0;
+    border:1px solid rgba(79,70,229,.14);
+    border-radius:18px;
+    background:#fff;
+    color:inherit;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 16px 30px rgba(31,41,55,.06);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .resource-tile:hover{ transform:translateY(-4px); box-shadow:0 22px 38px rgba(49,46,129,.12); border-color:rgba(139,92,246,.3); }
+  .resource-tile:focus-visible{ outline:3px solid rgba(139,92,246,.28); outline-offset:3px; }
+  .resource-preview{
+    position:relative;
+    height:176px;
+    overflow:hidden;
+    background:linear-gradient(135deg,#f7f7ff,#fff 55%,#fbf4ff);
+    border-bottom:1px solid #ececf4;
+  }
+  .resource-preview::after{
+    content:"";
+    position:absolute; inset:auto 0 0; height:42px;
+    background:linear-gradient(to top,rgba(255,255,255,.94),transparent);
+    pointer-events:none;
+  }
+  .resource-label{ padding:14px 15px 16px; }
+  .resource-label .type{ display:block; font:600 10.5px/1 'IBM Plex Mono',monospace; letter-spacing:.1em; text-transform:uppercase; color:#8b5cf6; margin-bottom:7px; }
+  .resource-label strong{ display:block; font-family:'Sora',sans-serif; font-size:14.5px; color:var(--text-head); line-height:1.3; }
+  .resource-label span{ display:block; font-size:12px; color:#7a8197; margin-top:5px; }
+  .resource-expand{ position:absolute; right:10px; top:10px; z-index:2; width:30px; height:30px; border-radius:999px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,var(--indigo),var(--violet),var(--pink)); box-shadow:0 8px 16px rgba(139,92,246,.22); font-size:14px; }
+
+  /* mini warmup preview */
+  .mini-calendar{ padding:14px; display:grid; grid-template-columns:repeat(5,1fr); gap:5px; transform:scale(.98); transform-origin:top center; }
+  .mini-day{ border:1px solid #e7e8f2; border-radius:7px; background:#fff; overflow:hidden; min-width:0; }
+  .mini-day b{ display:block; padding:5px 4px; background:#111936; color:#fff; font-size:7px; text-align:center; font-family:'IBM Plex Mono',monospace; }
+  .mini-day i{ display:block; height:13px; margin:4px; border-radius:4px; background:#f1f2f7; }
+  .mini-day i.rec{ background:#e8e3ff; }
+  .mini-day i.auto{ background:#ffd4e6; }
+  .mini-day i.good{ background:#dff1d3; }
+  .mini-day i.fun{ background:#dbe8ff; }
+
+  /* mini workflow previews */
+  .resource-preview.workflow-img{ display:grid; place-items:center; padding:10px; }
+  .resource-preview.workflow-img img{ width:100%; height:100%; object-fit:contain; border:0; border-radius:10px; background:#fff; }
+  .mini-flow{ position:relative; height:100%; padding:18px 14px; display:flex; align-items:center; justify-content:center; gap:7px; }
+  .mini-node{ width:45px; min-width:45px; padding:8px 4px; border-radius:10px; border:1px solid #e4e4f2; background:#fff; text-align:center; font-size:7px; line-height:1.25; color:#5e6479; box-shadow:0 5px 12px rgba(31,41,55,.05); }
+  .mini-node .ico{ width:22px; height:22px; border-radius:7px; margin:0 auto 5px; display:grid; place-items:center; color:#fff; font-size:10px; background:linear-gradient(135deg,var(--indigo),var(--violet)); }
+  .mini-node.pink .ico{ background:linear-gradient(135deg,var(--violet),var(--pink)); }
+  .mini-line{ height:2px; width:14px; flex:none; background:linear-gradient(90deg,var(--indigo),var(--pink)); border-radius:99px; opacity:.65; }
+
+  /* resource modal */
+  .resource-modal{
+    position:fixed; inset:0; z-index:9999;
+    display:none; align-items:center; justify-content:center;
+    padding:24px;
+    background:rgba(10,14,39,.74);
+    backdrop-filter:blur(8px);
+  }
+  .resource-modal.open{ display:flex; }
+  .resource-modal-panel{
+    width:min(1180px,96vw);
+    max-height:90vh;
+    overflow:auto;
+    border-radius:22px;
+    background:#f8f8fc;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 30px 90px rgba(0,0,0,.35);
+  }
+  .resource-modal-head{
+    position:sticky; top:0; z-index:6;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    padding:15px 18px;
+    background:rgba(248,248,252,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #e4e5ef;
+  }
+  .resource-modal-head h3{ font-size:17px; }
+  .resource-modal-close{
+    width:38px; height:38px; border-radius:999px; border:1px solid #dedfea; background:#fff; cursor:pointer;
+    font-size:18px; color:#30364d;
+  }
+  .resource-modal-body{ padding:20px; }
+  .resource-modal-body .warmup-shell{ margin:0; }
+  .resource-full-workflow{ background:#fff; border:1px solid #e5e6ef; border-radius:18px; padding:18px; }
+  .resource-full-workflow img{ display:block; width:100%; height:auto; border:0; border-radius:12px; }
+  .reddit-gen-flow{ display:grid; grid-template-columns:repeat(5,minmax(120px,1fr)); gap:12px; align-items:center; padding:26px; background:linear-gradient(135deg,#fafaff,#fff,#fff8fc); border-radius:18px; border:1px solid #e8e6f2; }
+  .reddit-gen-node{ min-height:128px; border:1px solid #e5e5ef; border-radius:16px; background:#fff; padding:16px 12px; text-align:center; box-shadow:0 10px 20px rgba(31,41,55,.06); display:flex; flex-direction:column; justify-content:center; }
+  .reddit-gen-node .ico{ width:38px; height:38px; border-radius:11px; margin:0 auto 10px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,var(--indigo),var(--violet),var(--pink)); }
+  .reddit-gen-node strong{ font-family:'Sora',sans-serif; font-size:13px; color:#22263a; }
+  .reddit-gen-node span{ margin-top:6px; font-size:11px; color:#7b8197; line-height:1.4; }
+  .reddit-gen-arrow{ height:3px; background:linear-gradient(90deg,var(--indigo),var(--pink)); border-radius:99px; position:relative; }
+  .reddit-gen-arrow::after{ content:""; position:absolute; right:-2px; top:50%; width:8px; height:8px; border-top:3px solid var(--pink); border-right:3px solid var(--pink); transform:translateY(-50%) rotate(45deg); }
+  body.modal-open{ overflow:hidden; }
+
+
+  /* ---------- Reddit warmup calendar ---------- */
+  .warmup-shell{
+    margin-top:26px;
+    border:1px solid rgba(79,70,229,.12);
+    border-radius:24px;
+    padding:24px 18px 20px;
+    background:
+      radial-gradient(460px 240px at 6% 10%, rgba(79,70,229,.09), transparent 72%),
+      radial-gradient(420px 260px at 96% 10%, rgba(236,72,153,.08), transparent 70%),
+      linear-gradient(135deg, #fbfbff 0%, #fff 50%, #fbf8ff 100%);
+    box-shadow:0 22px 60px rgba(49,46,129,.07);
+    overflow:hidden;
+    position:relative;
+  }
+  .warmup-shell::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(79,70,229,.2) .7px, transparent .7px);
+    background-size:15px 15px;
+    opacity:.12;
+    mask-image:linear-gradient(to bottom, #000, transparent 78%);
+    pointer-events:none;
+  }
+  .warmup-top{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:1.15fr .85fr; gap:18px; align-items:start;
+    margin-bottom:20px;
+  }
+  .warmup-title-card,
+  .warmup-key-card,
+  .warmup-rules-card{
+    background:rgba(255,255,255,.88);
+    border:1px solid rgba(229,229,240,.95);
+    border-radius:18px;
+    box-shadow:0 14px 30px rgba(17,24,39,.05);
+  }
+  .warmup-title-card{ padding:24px 24px 20px; }
+  .warmup-title-card .eyebrow{ margin-bottom:10px; }
+  .warmup-title-card h3{ font-size:28px; line-height:1.1; }
+  .warmup-title-card p{ margin:12px 0 0; font-size:14.5px; max-width:60ch; }
+  .warmup-account-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .warmup-account-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 12px; border-radius:999px;
+    background:rgba(79,70,229,.08); color:#4034bf;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700;
+    letter-spacing:.04em;
+  }
+  .warmup-account-chip i{
+    width:20px; height:20px; border-radius:50%;
+    display:grid; place-items:center; font-style:normal; color:#fff; font-size:11px;
+    background:linear-gradient(135deg,var(--indigo),var(--violet),var(--pink));
+  }
+  .warmup-side-stack{ display:grid; gap:14px; }
+  .warmup-key-card{ padding:18px; }
+  .warmup-key-card h4,
+  .warmup-rules-card h4{ font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#5f6581; }
+  .warmup-key-list{ display:grid; gap:10px; margin-top:14px; }
+  .warmup-key-item{ display:grid; grid-template-columns:32px 1fr; gap:10px; align-items:start; }
+  .warmup-swatch{
+    width:32px; height:32px; border-radius:10px; border:1px solid transparent;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);
+  }
+  .warmup-swatch.recurring{ background:#ebe8ff; border-color:#d6ceff; }
+  .warmup-swatch.workflow{ background:#ffd8e8; border-color:#f7b8d2; }
+  .warmup-swatch.milestone{ background:#dff2d3; border-color:#b8dea0; }
+  .warmup-swatch.funnel{ background:#dbe8ff; border-color:#b7cdf8; }
+  .warmup-key-item strong{ display:block; font-size:13px; color:var(--text-head); }
+  .warmup-key-item span{ display:block; margin-top:2px; font-size:12px; line-height:1.45; color:#666e86; }
+  .warmup-rules-card{ padding:18px; }
+  .warmup-rules-card ul{ margin:12px 0 0; padding-left:18px; }
+  .warmup-rules-card li{ font-size:12.8px; color:#52586f; margin-bottom:7px; }
+  .warmup-board{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:14px;
+  }
+  .warmup-day{
+    min-width:0;
+    background:rgba(255,255,255,.92);
+    border:1px solid rgba(229,229,240,.95);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 16px 28px rgba(17,24,39,.05);
+  }
+  .warmup-day .day-head{
+    padding:12px 14px;
+    background:linear-gradient(180deg, rgba(10,14,39,.94), rgba(31,41,75,.93));
+    color:#fff;
+  }
+  .warmup-day .day-kicker{ display:block; font-size:10px; font-family:'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase; color:#b9c0ee; }
+  .warmup-day .day-title{ display:block; margin-top:4px; font-size:18px; font-family:'Sora',sans-serif; font-weight:700; }
+  .warmup-day .day-body{ padding:14px; display:grid; gap:8px; }
+  .warmup-item{
+    padding:10px 11px; border-radius:12px; font-size:13px; line-height:1.35;
+    background:#f7f8fc; border:1px solid #edf0f7; color:#31374b;
+  }
+  .warmup-item.recurring{ background:#ebe8ff; border-color:#d7d0ff; color:#4d3fb8; font-weight:600; }
+  .warmup-item.workflow{ background:#ffd8e8; border-color:#f6bfd4; color:#9a3162; font-weight:700; }
+  .warmup-item.milestone{ background:#dff2d3; border-color:#b8dea0; color:#3b6b25; font-weight:700; }
+  .warmup-item.funnel{ background:#dbe8ff; border-color:#b7cdf8; color:#274f99; font-weight:700; }
+  .warmup-item.note{ background:#eef1f8; border-style:dashed; color:#5d647a; }
+  .warmup-item small{ display:block; margin-top:3px; font-size:11px; color:inherit; opacity:.85; }
+  .warmup-footer-note{
+    position:relative; z-index:1;
+    margin-top:18px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:linear-gradient(90deg, rgba(79,70,229,.08), rgba(236,72,153,.08));
+    border:1px solid rgba(139,92,246,.18);
+    font-size:13px; color:#52586f;
+  }
+  .warmup-footer-note b{ color:#3423aa; }
+
+  /* ---------- Workstream cards (reddit approach) ---------- */
+  .work-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px;}
+  .work-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:16px; padding:24px;
+  }
+  .work-card .wk-eyebrow{ display:flex; align-items:center; gap:8px; margin-bottom:10px;}
+  .work-card .wk-eyebrow .ic{
+    width:30px; height:30px; border-radius:9px; background:var(--grad);
+    display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .work-card h4{ font-size:17px; }
+  .work-card ul{ margin:12px 0 0; padding-left:18px; font-size:14px; color:var(--text-body); }
+  .work-card li{ margin-bottom:6px; }
+  .work-card .support{
+    margin-top:14px; padding-top:12px; border-top:1px dashed var(--line);
+    font-size:12.5px; color:var(--text-dim); font-family:'IBM Plex Mono',monospace;
+  }
+  .work-card .support b{ color:var(--violet); }
+
+  /* ---------- Risk box ---------- */
+  .risk-box{
+    background:linear-gradient(180deg, rgba(236,72,153,0.06), rgba(236,72,153,0.02));
+    border:1px solid rgba(236,72,153,0.3);
+    border-radius:16px; padding:26px 28px; margin:34px 0;
+  }
+  .risk-box .r-eyebrow{ color:var(--pink); }
+  .risk-box h3{ margin-top:10px; font-size:20px; }
+  .risk-box p{ font-size:14.5px; margin-top:8px; }
+  .risk-stats{ display:flex; gap:28px; margin-top:18px; flex-wrap:wrap; }
+  .risk-stats .rs{ min-width:140px; }
+  .risk-stats .rs .n{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:22px; color:var(--text-head); }
+  .risk-stats .rs .l{ font-size:12.5px; color:var(--text-dim); margin-top:2px; }
+
+  /* ---------- Access-code roadmap (playbook) ---------- */
+  .roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:8px; position:relative;}
+  .rm-card{
+    background:var(--ink); border-radius:14px; padding:20px 16px; color:#fff; position:relative;
+  }
+  .rm-card .code{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--mint); letter-spacing:0.08em;}
+  .rm-card h5{ font-family:'Sora',sans-serif; font-size:14.5px; margin-top:10px; font-weight:600;}
+  .rm-card p{ font-size:12.5px; color:#AEB3E0; margin-top:6px; }
+  .rm-card.rollout-tile{
+    width:100%; border:0; text-align:left; cursor:pointer; font:inherit;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .rm-card.rollout-tile:hover{ transform:translateY(-4px); box-shadow:0 20px 32px rgba(10,14,39,.2); border-color:rgba(139,92,246,.45); }
+  .rm-card.rollout-tile:focus-visible{ outline:3px solid rgba(139,92,246,.34); outline-offset:3px; }
+  .rm-card .open-hint{ display:block; margin-top:14px; font:600 10px/1 'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase; color:#aeb3e0; }
+  .rollout-intro{ margin:8px 0 18px; font-size:14px; color:#626a80; max-width:680px; }
+  .rollout-detail{ padding:4px 2px 10px; }
+  .rollout-detail-hero{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; margin-bottom:18px; }
+  .rollout-detail-num{ width:48px; height:48px; border-radius:14px; display:grid; place-items:center; color:#fff; font:700 15px/1 'IBM Plex Mono',monospace; background:linear-gradient(135deg,var(--indigo),var(--violet),var(--pink)); box-shadow:0 12px 24px rgba(139,92,246,.22); }
+  .rollout-detail h4{ margin:0; font-size:24px; }
+  .rollout-detail .lead{ margin:7px 0 0; color:#5f667d; font-size:14px; line-height:1.55; }
+  .rollout-detail-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .rollout-detail-card{ background:#fff; border:1px solid #e5e6ef; border-radius:16px; padding:16px; }
+  .rollout-detail-card h5{ margin:0 0 9px; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#686f85; }
+  .rollout-detail-card ul{ margin:0; padding-left:18px; }
+  .rollout-detail-card li{ margin-bottom:8px; font-size:13.5px; line-height:1.5; color:#4e556b; }
+  .rollout-detail-card p{ margin:0; font-size:13.5px; line-height:1.55; color:#4e556b; }
+  .rollout-detail-impact{ margin-top:14px; padding:15px 16px; border-radius:15px; color:#fff; background:linear-gradient(135deg,#111936,#242a55); }
+  .rollout-detail-impact strong{ display:block; font-family:'Sora',sans-serif; font-size:15px; margin-bottom:5px; }
+  .rollout-detail-impact span{ font-size:13px; line-height:1.5; color:#c9ceee; }
+
+
+  /* ---------- Goals table-esque (Key Takeaways) ---------- */
+  .takeaway-list{ display:flex; flex-direction:column; gap:0; margin-top:10px;}
+  .takeaway{
+    display:flex; gap:18px; padding:16px 0; border-bottom:1px solid var(--line); align-items:flex-start;
+  }
+  .takeaway:first-child{ padding-top:0; }
+  .takeaway .tnum{
+    font-family:'IBM Plex Mono',monospace; color:var(--violet); font-weight:600; font-size:13px;
+    flex:none; width:26px;
+  }
+  .takeaway p{ font-size:14.5px; margin:0; color:var(--text-head); }
+
+  /* ---------- Sources ---------- */
+  .sources{ background:var(--ink); color:#fff; }
+  .src-grid{ display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-top:34px; }
+  .src-col h4{ color:#fff; font-size:13px; text-transform:uppercase; letter-spacing:0.1em; font-family:'IBM Plex Mono',monospace; margin-bottom:14px; color:#AEB3E0;}
+  .src-col ol{ padding-left:18px; margin:0; }
+  .src-col li{ font-size:13.5px; color:#C7CAF0; margin-bottom:10px; line-height:1.5;}
+  .src-col li a{ color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.25);}
+  .src-col li a:hover{ border-color:#fff; }
+
+  footer{ padding:36px 0 50px; text-align:center; }
+  footer p{ font-size:12.5px; color:var(--text-dim); }
+
+  @media (max-width: 860px){
+    .hero h1{ font-size:36px; }
+    .panel-row{ grid-template-columns:1fr; }
+    .diag-grid, .goal-grid, .creative-grid, .work-grid, .roadmap, .src-grid{ grid-template-columns:1fr; }
+    .flow{ grid-template-columns:1fr; }
+    .flow .arrow{ transform:rotate(90deg); }
+    .ai-visibility-grid, .ai-risk-grid, .playbook-grid, .warmup-top, .warmup-board, .resource-tiles, .rollout-card, .community-graph{ grid-template-columns:1fr; }
+    .rollout-copy h4{ font-size:24px; }
+    .rollout-carousel-head{ padding:16px 14px 8px; align-items:flex-start; flex-direction:column; }
+    .rollout-slide{ padding:4px 14px 18px; }
+    .rollout-card{ min-height:auto; padding:14px; }
+    .ai-mini-stats{ grid-template-columns:1fr; }
+    .loop-row{ grid-template-columns:1fr 1fr; }
+    .seed-graph{ grid-template-columns:1fr; }
+    .seed-arrow{ width:4px; height:20px; justify-self:center; background:linear-gradient(180deg,#4ea6ff,#32d583); }
+    .rollout-detail-grid{ grid-template-columns:1fr; }
+    .resource-preview{ height:190px; }
+    .reddit-gen-flow{ grid-template-columns:1fr; }
+    .reddit-gen-arrow{ width:3px; height:24px; margin:0 auto; background:linear-gradient(180deg,var(--indigo),var(--pink)); }
+    .reddit-gen-arrow::after{ right:50%; top:auto; bottom:-2px; transform:translateX(50%) rotate(135deg); }
+    .ai-mini-stats{ grid-template-columns:1fr 1fr; }
+    .rollout-stat-grid{ grid-template-columns:1fr; }
+    .track-vertical-step{ grid-template-columns:20px 1fr; gap:10px; }
+    .track-chip-row{ gap:5px; }
+    .wrap{ padding:0 20px; }
+  }
+  @media (min-width: 861px) and (max-width: 1160px){
+    .playbook-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .ai-risk-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .warmup-board{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .warmup-top, .ai-visibility-grid, .rollout-card{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="brandmark">
+        <img src="images/butterflymx-logomark.png.webp" alt="ButterflyMX logo">
+        <span>ButterflyMX</span>
+      </div>
+      <div class="prepared-by">
+        Strategic Proposal — Social &amp; Community<br>
+        Prepared by <b>Leon Fray</b>, Social Media Strategist
+      </div>
+    </div>
+
+    <!-- <div class="eyebrow on-dark"><span class="dot"></span>ACCESS AUDIT — META &amp; REDDIT</div> -->
+    <h1>ButterflyMX Social Media<br><em>Strategy</em></h1>
+    <p class="lede">LinkedIn is covered. But Meta ads still speak in one voice to different types of buyers, and on Reddit:  where landlords, property managers, and HOA boards actually vet vendors ButterflyMX isnt fighting in the ring. I've drafted up a sample plan to lock down both.</p>
+
+    <div class="panel-row">
+      <div class="panel">
+        <div class="num">8.2x</div>
+        <div class="label">more engagement for helpful, authentic posts vs. self-promotion</div>
+        <div class="src">SRC — OCTOLENS REDDIT STUDY, 2026</div>
+      </div>
+      <div class="panel">
+        <div class="num">↑50%</div>
+        <div class="label">less wasted ad spend when targeting is personalized to the audience</div>
+        <div class="src">SRC — WEBTRIBUNAL, TARGETED ADVERTISING 2026</div>
+      </div>
+      <div class="panel">
+        <div class="num">94%</div>
+        <div class="label">of B2B buyers fact-check AI answers against real third-party sources</div>
+        <div class="src">SRC — TRUSTRADIUS 2026 B2B BUYING REPORT</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="report-layout">
+  <aside class="report-sidebar">
+    <span class="sidebar-label">Contents</span>
+    <ul>
+      <li><a href="#overview" data-section="overview"> Overview</a></li>
+      <li><a href="#goals" data-section="goals">Goals</a></li>
+      <li><a href="#meta-ads" data-section="meta-ads">Meta Ads: H2H Marketing</a></li>
+      <li><a href="#creative-workflow" class="subtle" data-section="creative-workflow">The workflow behind the creative below</a></li>
+      <li><a href="#reddit-strategy" data-section="reddit-strategy">Reddit: the conversation is happening with or without you</a></li>
+      <li><a href="#ai-visibility" class="subtle" data-section="ai-visibility">Reddit Fuels AI Citations</a></li>
+      <li><a href="#reddit-playbook" class="subtle" data-section="reddit-playbook">The Reddit Playbook</a></li>
+      <li><a href="#rollout" class="subtle" data-section="rollout">Rollout</a></li>
+      <li><a href="#workflow-resources" class="subtle" data-section="workflow-resources">Execution resources</a></li>
+      <li><a href="#common-mistakes" class="subtle" data-section="common-mistakes">Common Mistakes to Avoid</a></li>
+      <li><a href="#key-takeaways" data-section="key-takeaways">Key takeaways</a></li>
+      <li><a href="#sources" data-section="sources">Where the numbers came from</a></li>
+    </ul>
+  </aside>
+
+  <div class="report-main">
+    <!-- ============ OVERVIEW / CURRENT STATE ============ -->
+    <section id="overview" data-toc-section>
+      <div class="wrap">
+        <div class="section-head">
+          <!-- <div class="eyebrow"><span class="dot"></span></div> -->
+           <!-- <div class="eyebrow"><span class="dot"> -->
+
+           </span><h2>Overview</h2></div>
+          <p>ButterflyMX has built a strong presence on LinkedIn. However in the channels where landlords, property managers, and HOA members actually research and argue about product superiority they are under attack.</p>
+        </div>
+
+        <div class="diag-grid">
+          <div class="diag-card">
+            <span class="tag meta">Meta Ads</span>
+            <h3>Too Product Focused</h3>
+            <p>Current Meta creatives are broad and not focusing on h2h marketing. Meta's delivery system rewards creatives that speaks to a specific pain point over one that speaks to everyone at once.</p>
+            <div class="chip-row">
+              <span class="chip">87% more clicks on personalized ads</span>
+              <span class="chip">1.5–3x CTR lift</span>
+            </div>
+          </div>
+          <div class="diag-card">
+            <span class="tag reddit">Reddit</span>
+            <h3>Conversations behind your back</h3>
+            <p>Property-management subreddits are active and discussing which Video Intercom system to use.ButterflyMX is missing the opportunity to engage with these conversations, or even to defend its position. 
+              <b><strong></b></strong></p>
+              <p><strong>Negative reviews from r/HOA and r/PropertyManagement are already surfacing in Google and AI Recommendations.</strong> </p>
+            <div class="chip-row">
+              <span class="chip">67% of recs happen in dedicated subreddits</span>
+              <span class="chip">18+ mo. average thread lifespan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ============ GOALS ============ -->
+    <section class="tight" id="goals" data-toc-section>
+      <div class="wrap">
+        <div class="section-head">
+          <!-- <div class="eyebrow"><span class="dot"></span>GOALS</div> -->
+          <h2>Goals</h2>
+        </div>
+        <div class="goal-grid">
+          <div class="goal-card"><div class="g-num">GOAL 01</div><h4>Create more targeted Meta ad creative</h4></div>
+          <div class="goal-card"><div class="g-num">GOAL 02</div><h4>Establish a Reddit presence and counter competitor narratives</h4></div>
+          <div class="goal-card"><div class="g-num">GOAL 03</div><h4>Refine customer avatars through real community insight</h4></div>
+          <div class="goal-card"><div class="g-num">GOAL 04</div><h4>Protect and strengthen brand reputation, long-term</h4></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ============ META ADS SECTION ============ -->
+    <section id="meta-ads" data-toc-section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow"><span class="dot"></span>STRATEGIC RECOMMENDATION · 01</div>
+          <h2>Meta Ads: H2H Marketing</h2>
+          <p>Each buyer has their pain points that pricks them harder than the others. They respond to different language and solutions.The fix isn't a bigger budget it's creatives built from what these audiences are already saying, in their own words, in the communities where they say it.</p>
+        </div>
+
+    <div class="impact-wrap">
+      <div class="stat-callout">
+        <span class="big">54% / 45%</span>
+        <div class="desc">Personalized ads are 54% more engaging and 45% more memorable than one-size-fits-all creative.</div>
+        <span class="src">SOURCE — YAHOO RESEARCH, VIA THUNDER EXPERIENCE CLOUD</span>
+      </div>
+
+      <div class="donut-card">
+        <div class="pie-chart" aria-label="Personalization lift pie chart">
+          <div class="pie-center">
+            <strong>54%</strong>
+            <span>engagement</span>
+          </div>
+        </div>
+        <ul class="legend">
+          <li><i class="red"></i> Engagement lift</li>
+          <li><i class="pink"></i> Baseline creative</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stat-callout" style="margin-bottom:26px;">
+      <span class="big">10–15%</span>
+      <div class="desc">Revenue lift McKinsey attributes to personalization at scale, with SaaS-adjacent categories often landing at the higher end of the 5–25% range.</div>
+      <span class="src">SOURCE — MCKINSEY, VIA IMPROVADO</span>
+    </div>
+
+    <h3 id="creative-workflow" data-toc-section style="margin-top:44px; font-size:20px; scroll-margin-top:24px; align: justify;">Custom N8N Meta Ad Automation</h3>
+    <p style="margin-top:8px; font-size:14.5px; max-width:640px;"></p>
+
+    <div class="creative-flow-showcase" aria-label="From viral post to Meta ad workflow">
+      <div class="creative-flow-kicker">AI-powered workflow automation</div>
+
+      <div class="creative-flow-stage">
+        <svg class="creative-flow-ribbon" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="metaFlowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4F46E5"/>
+              <stop offset="50%" stop-color="#8B5CF6"/>
+              <stop offset="100%" stop-color="#EC4899"/>
+            </linearGradient>
+          </defs>
+          <path class="main" d="M-40,178 C90,45 220,255 330,154 S535,78 635,170 S820,250 1080,135"/>
+          <path class="shine" d="M-40,178 C90,45 220,255 330,154 S535,78 635,170 S820,250 1080,135"/>
+        </svg>
+
+        <div class="creative-flow-step input">
+          <div class="creative-flow-pill">1 · Viral Post</div>
+          <button class="creative-flow-card" type="button" data-resource="input" aria-label="Open Viral Post image">
+            <div class="creative-flow-img">
+              <img src="images/input.png" alt="Viral landlord-community post used as the workflow input">
+            </div>
+          </button>
+        </div>
+
+        <div class="creative-flow-step workflow">
+          <div class="creative-flow-pill">2 · n8n Workflow</div>
+          <button class="creative-flow-card" type="button" data-resource="meta" aria-label="Open n8n Meta ad workflow image">
+            <div class="creative-flow-img">
+              <img src="images/n8n_workflow.png" alt="n8n automation workflow that analyzes the post and generates the ad creative">
+            </div>
+          </button>
+        </div>
+
+        <div class="creative-flow-step output">
+          <div class="creative-flow-pill">3 · Meta Ad Output</div>
+          <button class="creative-flow-card" type="button" data-resource="output" aria-label="Open Meta Ad Output image">
+            <div class="creative-flow-img">
+              <img src="images/output.png" alt="Final ButterflyMX Meta ad generated from the source post">
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="creative-flow-notes">
+        <div class="creative-flow-note">
+          <div class="creative-flow-icon">✦</div>
+          <div><h5>Raw, engaging content</h5><p>Start with a real post that already proves the pain point can capture attention.</p></div>
+        </div>
+        <div class="creative-flow-note">
+          <div class="creative-flow-icon">⚙</div>
+          <div><h5>AI-powered automation</h5><p>n8n orchestrates analysis, structure, image generation, refinement, and asset delivery.</p></div>
+        </div>
+        <div class="creative-flow-note">
+          <div class="creative-flow-icon">↗</div>
+          <div><h5>Customer-focused creative</h5><p>The audience's pain point becomes the hook; ButterflyMX becomes the relief.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:28px; font-size:14.5px;">I made a custom n8n workflow to automate this process, to allow for platform-specific messaging and seamless integration with tools. The same headline structure is currently reused across Facebook, Instagram, and X  but each has its own algorithm and culture, and each community's viral posts are a free, ongoing source of the exact language to mirror back at prospects.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ============ REDDIT SECTION ============ -->
+<section id="reddit-strategy" data-toc-section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span>STRATEGIC RECOMMENDATION · 02</div>
+      <h2>Reddit: the conversation is happening with or without you</h2>
+      <p>ButterflyMX already has negative Reddit discussion showing up where prospects research access-control vendors. That matters because Reddit threads can travel into Google results and AI recommendations, turning a few hostile posts into a much larger reputation problem. If some negative posts are being seeded by competitor-linked new accounts, leaving them unanswered gives those narratives time to become the version prospects see first.</p>
+    </div>
+
+    <div class="reddit-visual-shell">
+      <div class="ai-visibility-card">
+        <div class="ai-kicker">AI VISIBILITY</div>
+        <div class="ai-title-row">
+          <!-- <div class="ai-stepdot">7</div> -->
+          <h3 id="ai-visibility" data-toc-section style="scroll-margin-top:24px;">Reddit Fuels AI Citations</h3>
+        </div>
+        <!-- <div class="ai-banner"><strong>4.7x</strong><span>more likely to appear in AI responses than blog posts</span></div> -->
+
+        <div class="ai-visibility-grid">
+          <div class="ai-copy">
+            <div class="ai-mini-stats">
+              <div class="ai-mini-stat"><strong>4.7x</strong><span>higher AI visibility: Reddit threads vs. blogs</span></div>
+              <div class="ai-mini-stat"><strong>34%</strong><span>of ChatGPT responses about B2B tools mention or cite Reddit</span></div>
+              <div class="ai-mini-stat"><strong>200+</strong><span>AI-cited thread average upvotes, signaling social proof</span></div>
+              <div class="ai-mini-stat"><strong>94%</strong><span>of B2B buyers fact-check AI answers against third-party sources</span></div>
+            </div>
+
+            <p>For ButterflyMX, this is a brand-defense issue. Prospects searching “ButterflyMX reviews,” alternatives, or access-control recommendations may encounter Reddit opinions before they reach the website.</p>
+            <p>Why this matters:</p>
+            <ul>
+              <li>A stronger, authentic ButterflyMX presence creates more credible source material for search engines and AI systems</li>
+              <li>"Reddit" appears in <strong>34%</strong> of ChatGPT responses about B2B software recommendations.</li>
+              <li>Gives prospects context when negative threads appear.</li>
+            </ul>
+            <!-- <p>A stronger, authentic ButterflyMX presence creates more credible source material for search engines and AI systems to surface — and gives prospects context when negative threads appear.</p> -->
+          </div>
+
+          <div>
+            <div class="ai-chart-card">
+              <div class="ai-card-title">AI citation frequency (indexed to blogs = 10)</div>
+              <div class="ai-bar-row">
+                <div class="ai-bar-top"><span>Reddit threads</span><strong>47</strong></div>
+                <div class="ai-track"><div class="ai-fill reddit"></div></div>
+              </div>
+              <div class="ai-bar-row">
+                <div class="ai-bar-top"><span>Blog posts</span><strong>10</strong></div>
+                <div class="ai-track"><div class="ai-fill blog"></div></div>
+              </div>
+              <div class="ai-bar-row">
+                <div class="ai-bar-top"><span>Product pages</span><strong>8</strong></div>
+                <div class="ai-track"><div class="ai-fill product"></div></div>
+              </div>
+              <div class="ai-bar-row">
+                <div class="ai-bar-top"><span>News articles</span><strong>15</strong></div>
+                <div class="ai-track"><div class="ai-fill news"></div></div>
+              </div>
+            </div>
+
+            <div class="ai-quote-card">
+              <blockquote>“Reddit threads are 4.7x more likely to appear in AI-generated responses than blog posts. ‘Reddit’ appears in 34% of ChatGPT responses about Business recommendations.”<cite>— Octolens Reddit B2B Study, 2026</cite></blockquote>
+            </div>
+
+            <div class="ai-source-card">
+              <h5>Sources</h5>
+              <ul>
+                <li>Semrush: Reddit AI Search Visibility Study</li>
+                <li>Profound: AI Platform Citation Patterns</li>
+                <li>CBS News: Google–Reddit $60M AI Training Deal</li>
+                <li>Octolens internal data (522M mentions)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-risk-card">
+          <h4>Why ButterflyMX should care: Reddit can become the answer before your website does.</h4>
+          <p>Negative threads can influence comparison searches, AI answers, and buyer perception at the exact moment a prospect is deciding who to trust. The cost is not just bad sentiment — it can mean fewer demos, weaker conversion, and more sales friction.</p>
+          <div class="ai-risk-grid">
+            <div class="ai-risk-stat"><strong>34%</strong><span>of B2B recommendation answers can echo Reddit language or framing.</span></div>
+            <div class="ai-risk-stat"><strong>94%</strong><span>of buyers verify AI claims with outside sources before purchasing.</span></div>
+            <div class="ai-risk-stat"><strong>63%</strong><span>would likely stop buying from a brand caught manipulating reviews.</span></div>
+            <div class="ai-risk-stat"><strong>67%</strong><span>of B2B tool recommendations happen inside dedicated subreddits.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reddit-panel-title">
+        <h3 id="reddit-playbook" data-toc-section style="scroll-margin-top:24px;">The Reddit Playbook</h3>
+        <p>6 actions ButterflyMX can use to reduce reputation risk, earn trust, and improve what prospects find when they research the brand.</p>
+      </div>
+
+      <div class="playbook-grid">
+        <article class="playbook-card">
+          <div class="playbook-top"><div class="playbook-icon">⌘</div><div class="playbook-step">Step 1</div></div>
+          <h4>Monitor in real-time</h4>
+          <p>Track ButterflyMX, competitor names, and high-intent phrases so negative or misleading threads are seen early before they gain traction.</p>
+        </article>
+        <article class="playbook-card">
+          <div class="playbook-top"><div class="playbook-icon">♡</div><div class="playbook-step">Step 2</div></div>
+          <h4>Lead with value, not promotion</h4>
+          <p>Useful answers give ButterflyMX credibility without looking like damage control. The goal is to be helpful enough that the brand earns trust naturally.</p>
+        </article>
+        <article class="playbook-card">
+          <div class="playbook-top"><div class="playbook-icon">◔</div><div class="playbook-step">Step 3</div></div>
+          <h4>Respond within 2 hours</h4>
+          <p>Fast responses let ButterflyMX add facts and context before a negative narrative becomes the dominant interpretation of the thread.</p>
+        </article>
+        <article class="playbook-card">
+          <div class="playbook-top"><div class="playbook-icon">◌</div><div class="playbook-step">Step 4</div></div>
+          <h4>Build genuine presence</h4>
+          <p>Established, disclosed accounts make ButterflyMX's participation look credible when the brand needs to answer criticism or clarify misinformation.</p>
+        </article>
+        <article class="playbook-card">
+          <div class="playbook-top"><div class="playbook-icon">⌕</div><div class="playbook-step">Step 5</div></div>
+          <h4>Track competitors' mentions</h4>
+          <p>Watch “ButterflyMX vs.” and “alternative to” threads to catch competitor narratives, recurring objections, and high-intent buyers while decisions are still being made.</p>
+        </article>
+        <article class="playbook-card">
+          <div class="playbook-top"><div class="playbook-icon">✦</div><div class="playbook-step">Step 6</div></div>
+          <h4>Use feedback for product</h4>
+          <p>Repeated complaints show ButterflyMX what buyers distrust. Route those themes into product, support, sales enablement, and future ad creative.</p>
+        </article>
+      </div>
+
+      <div id="rollout" data-toc-section class="rollout-carousel-wrap" style="scroll-margin-top:24px;">
+        <h3 style="font-size:20px;">Rollout</h3>
+        <p class="rollout-intro">A single ButterflyMX rollout sequence: monitor the conversation, seed trust, fix the owned community, then turn Reddit into a growth engine. Use the carousel to move through each stage.</p>
+
+        <div class="rollout-carousel" data-rollout-carousel>
+          <div class="rollout-carousel-head">
+            <div class="rollout-carousel-meta">
+              <div class="rollout-step-badge" data-rollout-step>01</div>
+              <div>
+                <div class="rollout-eyebrow">ButterflyMX rollout stage</div>
+                <div class="rollout-title" data-rollout-title>Track &amp; respond</div>
+                <div class="rollout-related" data-rollout-related>Related Reddit Playbook step: 1 · Monitor in real-time</div>
+              </div>
+            </div>
+            <div class="rollout-controls">
+              <button class="rollout-btn" type="button" data-rollout-prev aria-label="Previous rollout stage">‹</button>
+              <button class="rollout-btn" type="button" data-rollout-next aria-label="Next rollout stage">›</button>
+            </div>
+          </div>
+
+          <div class="rollout-viewport">
+            <div class="rollout-track" data-rollout-track>
+              <article class="rollout-slide" data-title="Track &amp; respond" data-step="01" data-related="Related Reddit Playbook step: 1 · Monitor in real-time">
+                <div class="rollout-card">
+                  <div class="rollout-copy">
+                    <h4>Track every ButterflyMX mention — even old ones.</h4>
+                    <p>Start with keyword tracking across the right subreddits, then reply when there is useful context to add. Old Reddit comments still carry trust, still surface in search, and still shape what buyers think about ButterflyMX.</p>
+                    <ul>
+                      <li>Track ButterflyMX, competitor names, pricing, support, installation, and “alternative to” searches.</li>
+                      <li>Reply to legacy comments when they still rank or still influence the conversation.</li>
+                      <li>If an account looks suspiciously inactive or exists mainly to post negative ButterflyMX commentary, flag the content, report the account, and message the moderators.</li>
+                    </ul>
+                    <div class="rollout-impact"><strong>Why ButterflyMX should care</strong><span>Unanswered negative comments can become durable proof points against the brand. A useful reply can reduce the damage and give both buyers and AI systems better context.</span></div>
+                    <div class="rollout-caution"><strong>Caution</strong><span>Report accounts that are posting negative ButterflyMX reviews and have little or no recent activity. Flag the content, report the account, and message the moderators with context.</span></div>
+                  </div>
+                  <div class="rollout-visual">
+                    <div class="rollout-visual-head"><span class="label">Related studies</span><span class="metric">Speed and visibility matter</span></div>
+                    <div class="rollout-graph">
+                      <div class="rollout-study-stack">
+                        <div class="rollout-study-card">
+                          <div class="rollout-study-title">Thread engagement by response timing (indexed)</div>
+                          <div class="rollout-study-rows">
+                            <div class="rollout-study-row compact"><span>&lt;2 hours</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:100%; background:#22c55e;"></div></div><b>47</b></div>
+                            <div class="rollout-study-row compact"><span>2–6 hours</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:66%; background:#84cc16;"></div></div><b>31</b></div>
+                            <div class="rollout-study-row compact"><span>6–24 hours</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:32%; background:#f59e0b;"></div></div><b>15</b></div>
+                            <div class="rollout-study-row compact"><span>24+ hours</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:15%; background:#ef4444;"></div></div><b>7</b></div>
+                          </div>
+                          <div class="rollout-study-source">Source · Octolens Reddit B2B Study, 2026</div>
+                        </div>
+                        <div class="rollout-quote-card">
+                          <blockquote>Early helpful replies capture the largest share of thread engagement. Even older comments keep influencing buyers when those threads continue to rank in search and AI answers.</blockquote>
+                          <cite>Octolens Reddit B2B Study, 2026 · Semrush Reddit AI Search Visibility Study</cite>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rollout-caption">ButterflyMX should respond quickly where it can, but it should also revisit older high-visibility threads because those legacy conversations still shape trust.</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="rollout-slide" data-title="Seed power accounts" data-step="02" data-related="Related Reddit Playbook step: 4 · Build genuine presence">
+                <div class="rollout-card">
+                  <div class="rollout-copy">
+                    <h4>Seed power accounts that can carry trust.</h4>
+                    <p>These are the disclosed, high-quality Reddit accounts that make ButterflyMX participation believable. They let the brand engage without immediate backlash and create a bridge into owned communities.</p>
+                    <ul>
+                      <li>Build trust through landlord, HOA, and property-management conversations before trying to persuade anyone.</li>
+                      <li>Use the accounts to mention ButterflyMX naturally when it actually helps the discussion.</li>
+                      <li>Most importantly, use them to bring Redditors into ButterflyMX-owned subreddits where the brand has more control.</li>
+                    </ul>
+                    <div class="rollout-impact"><strong>Why ButterflyMX should care</strong><span>When a brand already has a reputation problem, generic corporate responses are easier to dismiss. Trusted power accounts create a softer, more credible entry point.</span></div>
+                  </div>
+                  <div class="rollout-visual">
+                    <div class="rollout-visual-head"><span class="label">Related studies</span><span class="metric">Authenticity outperforms promotion</span></div>
+                    <div class="rollout-graph">
+                      <div class="rollout-study-stack">
+                        <div class="rollout-study-card">
+                          <div class="rollout-study-title">Average upvotes by contribution type</div>
+                          <div class="rollout-study-rows">
+                            <div class="rollout-study-row compact"><span>Helpful comments</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:100%; background:#22c55e;"></div></div><b>89</b></div>
+                            <div class="rollout-study-row compact"><span>Neutral mentions</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:31%; background:#94a3b8;"></div></div><b>28</b></div>
+                            <div class="rollout-study-row compact"><span>Self-promotional posts</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:12%; background:#ef4444;"></div></div><b>11</b></div>
+                          </div>
+                          <div class="rollout-study-source">Source · Octolens Reddit B2B Study, 2026</div>
+                        </div>
+                        <div class="rollout-study-card">
+                          <div class="rollout-study-title">Buyer trust after review manipulation is discovered (%)</div>
+                          <div class="rollout-study-rows">
+                            <div class="rollout-study-row compact"><span>Likely stop buying</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:63%; background:#ef4444;"></div></div><b>63</b></div>
+                            <div class="rollout-study-row compact"><span>Not likely to stop</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:37%; background:#4ea6ff;"></div></div><b>37</b></div>
+                          </div>
+                          <div class="rollout-study-source">Source · TrustRadius 2026 B2B Buying Report</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rollout-caption">Power accounts work because they lead with genuinely useful participation. That gives ButterflyMX credibility without triggering the distrust that follows obvious promotion or suspected manipulation.</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="rollout-slide" data-title="Rebuild r/ButterflyMX" data-step="03" data-related="Related Reddit Playbook step: 2 · Lead with value">
+                <div class="rollout-card">
+                  <div class="rollout-copy">
+                    <h4>Make the ButterflyMX subreddit about the customer, not the product.</h4>
+                    <p>Right now the community feels product-focused. Once the power accounts start bringing people in, the subreddit needs space for open discussion so users can talk about their own frustrations, needs, and experiences.</p>
+                    <ul>
+                      <li>Reduce the feeling of a product bulletin board and create more room for open-ended conversation.</li>
+                      <li>Invite discussion about package theft, building access, resident complaints, visitor management, and other day-to-day pains.</li>
+                      <li>Use the subreddit as a place where people can discuss ButterflyMX and the larger problems ButterflyMX is supposed to solve.</li>
+                    </ul>
+                    <div class="rollout-impact"><strong>Why ButterflyMX should care</strong><span>If the owned subreddit feels self-centered, people will not stay. A customer-centered community gives ButterflyMX a safer place to host the conversation and surface better brand signals.</span></div>
+                  </div>
+                  <div class="rollout-visual">
+                    <div class="rollout-visual-head"><span class="label">Related studies</span><span class="metric">Product feedback lives in the thread</span></div>
+                    <div class="rollout-graph">
+                      <div class="rollout-study-stack">
+                        <div class="rollout-study-card">
+                          <div class="rollout-study-title">Reddit B2B feedback types (%)</div>
+                          <div class="rollout-study-rows">
+                            <div class="rollout-study-row compact"><span>Praise / recommendations</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:100%; background:#22c55e;"></div></div><b>34</b></div>
+                            <div class="rollout-study-row compact"><span>Neutral discussion</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:74%; background:#94a3b8;"></div></div><b>25</b></div>
+                            <div class="rollout-study-row compact"><span>Feature requests</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:71%; background:#8b5cf6;"></div></div><b>24</b></div>
+                            <div class="rollout-study-row compact"><span>Complaints / frustrations</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:50%; background:#ef4444;"></div></div><b>17</b></div>
+                          </div>
+                          <div class="rollout-study-source">Source · Octolens Reddit B2B Study, 2026</div>
+                        </div>
+                        <div class="rollout-quote-card">
+                          <blockquote>About 41% of B2B Reddit discussions are complaints or feature requests, and the average thread contains multiple actionable product insights that would otherwise be expensive to gather.</blockquote>
+                          <cite>Octolens Reddit B2B Study, 2026</cite>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rollout-caption">A more open r/ButterflyMX community gives the brand direct access to the questions, complaints, and feature language customers already want to discuss.</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="rollout-slide" data-title="Close the growth loop" data-step="04" data-related="Related Reddit Playbook step: 6 · Use feedback for product">
+                <div class="rollout-card">
+                  <div class="rollout-copy">
+                    <h4>Turn Reddit into market research and cross-platform growth.</h4>
+                    <p>Once ButterflyMX has real traction on Reddit, the value goes beyond reputation defense. Reddit becomes a source of ad inputs, voice-of-customer insights, and community users that can be moved to other channels.</p>
+                    <ul>
+                      <li>Use posts, comments, and repeated frustrations as market research for Meta ads and other content.</li>
+                      <li>Pull the strongest language into creative for Facebook, Instagram, and X.</li>
+                      <li>Funnel users from ButterflyMX communities into the brand’s other social channels to create a broader owned audience system.</li>
+                    </ul>
+                    <div class="rollout-impact"><strong>Why ButterflyMX should care</strong><span>Fixing Reddit improves more than Reddit. It sharpens ad messaging, improves product intelligence, and creates a repeatable loop between community insight and broader social growth.</span></div>
+                  </div>
+                  <div class="rollout-visual">
+                    <div class="rollout-visual-head"><span class="label">Related studies</span><span class="metric">Reddit shapes AI and discovery</span></div>
+                    <div class="rollout-graph">
+                      <div class="rollout-study-stack">
+                        <div class="rollout-study-card">
+                          <div class="rollout-study-title">AI citation frequency (indexed to blogs = 10)</div>
+                          <div class="rollout-study-rows">
+                            <div class="rollout-study-row compact"><span>Reddit threads</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:100%; background:#9b7bff;"></div></div><b>47</b></div>
+                            <div class="rollout-study-row compact"><span>Blog posts</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:21%; background:#94a3b8;"></div></div><b>10</b></div>
+                            <div class="rollout-study-row compact"><span>Product pages</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:17%; background:#4ea6ff;"></div></div><b>8</b></div>
+                            <div class="rollout-study-row compact"><span>News articles</span><div class="rollout-study-track"><div class="rollout-study-fill" style="width:32%; background:#64748b;"></div></div><b>15</b></div>
+                          </div>
+                          <div class="rollout-study-source">Source · Semrush Reddit AI Search Visibility Study</div>
+                        </div>
+                        <div class="rollout-stat-grid">
+                          <div class="rollout-stat-mini"><strong>4.7x</strong><span>more likely for Reddit threads to appear in AI answers than blog posts.</span></div>
+                          <div class="rollout-stat-mini"><strong>34%</strong><span>of ChatGPT B2B recommendation answers mention or cite Reddit.</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rollout-caption">If ButterflyMX improves Reddit, that insight can feed Meta creative and improve what prospects see across AI search, Google, and the rest of the social funnel.</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="rollout-dots" data-rollout-dots>
+            <button class="rollout-dot active" type="button" aria-label="Go to rollout stage 1"></button>
+            <button class="rollout-dot" type="button" aria-label="Go to rollout stage 2"></button>
+            <button class="rollout-dot" type="button" aria-label="Go to rollout stage 3"></button>
+            <button class="rollout-dot" type="button" aria-label="Go to rollout stage 4"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="resource-tiles-wrap" id="workflow-resources" data-toc-section>
+        <div class="resource-tiles-head">
+          <div>
+            <h3>Execution resources</h3>
+            <p>Click a tile to open the full process.</p>
+          </div>
+        </div>
+
+        <div class="resource-tiles">
+          <button class="resource-tile" type="button" data-resource="warmup" aria-label="Open Reddit 14-day warmup plan">
+            <div class="resource-preview">
+              <span class="resource-expand">↗</span>
+              <div class="mini-calendar">
+                <div class="mini-day"><b>DAY 1</b><i></i><i class="rec"></i></div>
+                <div class="mini-day"><b>DAY 2</b><i class="rec"></i><i></i><i class="auto"></i></div>
+                <div class="mini-day"><b>DAY 3</b><i class="rec"></i><i class="auto"></i></div>
+                <div class="mini-day"><b>DAY 4</b><i class="rec"></i><i></i><i class="auto"></i></div>
+                <div class="mini-day"><b>DAY 5</b><i></i><i></i></div>
+                <div class="mini-day"><b>DAY 6</b><i class="rec"></i></div>
+                <div class="mini-day"><b>DAY 7</b><i></i><i class="auto"></i></div>
+                <div class="mini-day"><b>DAY 8</b><i class="rec"></i></div>
+                <div class="mini-day"><b>DAY 9</b><i class="rec"></i></div>
+                <div class="mini-day"><b>DAY 10</b><i></i></div>
+                <div class="mini-day"><b>DAY 11</b><i class="rec"></i><i class="rec"></i></div>
+                <div class="mini-day"><b>DAY 12</b><i></i><i class="good"></i></div>
+                <div class="mini-day"><b>DAY 13</b><i></i><i class="fun"></i></div>
+                <div class="mini-day"><b>DAY 14</b><i></i><i class="fun"></i></div>
+                <div class="mini-day"><b>NOTES</b><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="resource-label"><span class="type">Account Growth</span><strong>Reddit 14-Day Warmup</strong><span>Trust-building cadence for three disclosed accounts.</span></div>
+          </button>
+
+          <button class="resource-tile" type="button" data-resource="meta" aria-label="Open Meta ads generator workflow">
+            <div class="resource-preview workflow-img">
+              <span class="resource-expand">↗</span>
+              <img src="images/n8n_workflow.png" alt="Preview of Meta ads generator workflow">
+            </div>
+            <div class="resource-label"><span class="type">Automation</span><strong>Meta Ads Generator Workflow</strong><span>Viral post → analysis → creative → asset delivery.</span></div>
+          </button>
+
+          <button class="resource-tile" type="button" data-resource="redditgen" aria-label="Open Reddit post and comment generator workflow">
+            <div class="resource-preview workflow-img">
+              <span class="resource-expand">↗</span>
+              <img src="images/n8n_workflow_2.png" alt="Preview of Reddit post and comment generator workflow">
+            </div>
+            <div class="resource-label"><span class="type">Automation</span><strong>Reddit Post &amp; Comment Generator</strong><span>Monitor threads and draft useful, brand-safe responses.</span></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="reddit-panel-title" style="margin-top:34px;">
+        <h3 id="common-mistakes" data-toc-section style="scroll-margin-top:24px;">Common Mistakes to Avoid</h3>
+        <p>5 mistakes that could make ButterflyMX's existing reputation problem worse instead of fixing it.</p>
+      </div>
+
+      <div class="mistakes-stack">
+        <article class="mistake-card critical">
+          <div class="alert"></div>
+          <div>
+            <h4>Fake accounts and astroturfing <span class="risk-badge critical">Critical</span></h4>
+            <p>If ButterflyMX responds to suspected competitor astroturfing with fake accounts of its own, it risks validating the criticism and creating a second reputation problem.</p>
+          </div>
+        </article>
+        <article class="mistake-card high">
+          <div class="alert"></div>
+          <div>
+            <h4>Self-promotional posts <span class="risk-badge high">High Risk</span></h4>
+            <p>Overly promotional replies can make negative reviewers look more credible. ButterflyMX should answer the problem first and mention the product only when useful.</p>
+          </div>
+        </article>
+        <article class="mistake-card high">
+          <div class="alert"></div>
+          <div>
+            <h4>Ignoring community rules <span class="risk-badge high">High Risk</span></h4>
+            <p>A ban or moderator removal would weaken ButterflyMX's ability to respond where negative discussion is already happening.</p>
+          </div>
+        </article>
+        <article class="mistake-card medium">
+          <div class="alert"></div>
+          <div>
+            <h4>Slow response times <span class="risk-badge medium">Medium Risk</span></h4>
+            <p>When ButterflyMX arrives late, negative comments may already have the votes, replies, and search visibility that make them harder to counter.</p>
+          </div>
+        </article>
+        <article class="mistake-card medium">
+          <div class="alert"></div>
+          <div>
+            <h4>Defensive responses to criticism <span class="risk-badge medium">Medium Risk</span></h4>
+            <p>Defensive replies can become screenshots and new evidence against the brand. ButterflyMX should acknowledge, clarify, and show the fix without arguing.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<div class="resource-modal" id="resourceModal" role="dialog" aria-modal="true" aria-labelledby="resourceModalTitle">
+  <div class="resource-modal-panel">
+    <div class="resource-modal-head">
+      <h3 id="resourceModalTitle">Resource</h3>
+      <button class="resource-modal-close" type="button" aria-label="Close resource">×</button>
+    </div>
+    <div class="resource-modal-body" id="resourceModalBody"></div>
+  </div>
+</div>
+
+<template id="resource-rollout-monitor">
+  <div class="rollout-detail">
+    <div class="rollout-detail-hero"><div class="rollout-detail-num">01</div><div><h4>Track every ButterflyMX conversation</h4><p class="lead">The first job is not posting more. It is finding the conversations that already shape how prospects see ButterflyMX and making sure credible context exists beside them.</p></div></div>
+    <div class="rollout-detail-grid">
+      <div class="rollout-detail-card"><h5>What ButterflyMX does</h5><ul><li>Track “ButterflyMX,” common misspellings, competitor names, “alternative to,” pricing, support, installation, and access-control pain points across relevant subreddits.</li><li>Reply when there is something useful to add even if the thread is old. Legacy Reddit comments still surface in Google, AI answers, and buyer research.</li><li>Answer the actual issue first; mention ButterflyMX only where it directly helps.</li></ul></div>
+      <div class="rollout-detail-card"><h5>Suspicious activity protocol</h5><ul><li>Check account age, posting history, karma, repeated anti-ButterflyMX language, and whether the account exists mainly to attack one brand.</li><li>If activity looks coordinated or inauthentic, flag the post/comment, report the account through Reddit, and send moderators a concise evidence-based note.</li><li>Do not publicly accuse a competitor without proof. Keep the public response factual and helpful.</li></ul></div>
+    </div>
+    <div class="rollout-detail-impact"><strong>Why this matters for ButterflyMX</strong><span>Unanswered criticism can become durable search evidence. Adding credible responses to both new and legacy threads gives prospects — and AI systems — more context than a one-sided negative review.</span></div>
+  </div>
+</template>
+
+<template id="resource-rollout-power">
+  <div class="rollout-detail">
+    <div class="rollout-detail-hero"><div class="rollout-detail-num">02</div><div><h4>Seed trusted power accounts</h4><p class="lead">These disclosed, long-term accounts become ButterflyMX's trusted distribution layer — built on contribution first, promotion second.</p></div></div>
+    <div class="rollout-detail-grid">
+      <div class="rollout-detail-card"><h5>Role of the accounts</h5><ul><li>Build karma and familiarity by answering landlord, HOA, property-management, and access-control questions.</li><li>Create enough trust that an occasional relevant ButterflyMX mention does not feel like an ad dropping into the conversation.</li><li>Become recognizable community members who can clarify misinformation without looking like emergency brand accounts.</li></ul></div>
+      <div class="rollout-detail-card"><h5>Primary growth objective</h5><ul><li>Use helpful contributions to earn profile visits and interest.</li><li>When relevant, invite users into ButterflyMX-owned communities where deeper discussion can continue.</li><li>Keep affiliation disclosed and maintain a clear majority of non-promotional activity.</li></ul></div>
+    </div>
+    <div class="rollout-detail-impact"><strong>Why this matters for ButterflyMX</strong><span>Trust cannot be manufactured the day a reputation problem appears. Power accounts give ButterflyMX credible voices already embedded in the communities where negative narratives and buying decisions happen.</span></div>
+  </div>
+</template>
+
+<template id="resource-rollout-community">
+  <div class="rollout-detail">
+    <div class="rollout-detail-hero"><div class="rollout-detail-num">03</div><div><h4>Turn r/ButterflyMX into a real community</h4><p class="lead">The current subreddit is product-heavy. The opportunity is to make it useful even when someone is not trying to buy ButterflyMX that day.</p></div></div>
+    <div class="rollout-detail-grid">
+      <div class="rollout-detail-card"><h5>Shift the content mix</h5><ul><li>Create open-ended threads about package theft, resident experience, HOA communication, property operations, building security, and access frustrations.</li><li>Ask questions that let landlords and property teams talk about themselves, their buildings, and their problems.</li><li>Feature customer stories and product education only as part of a broader discussion mix.</li></ul></div>
+      <div class="rollout-detail-card"><h5>Use the power accounts</h5><ul><li>Carry interested Redditors from external conversations into r/ButterflyMX when the community is genuinely relevant.</li><li>Seed early discussion so new visitors see an active conversation rather than a product feed.</li><li>Use recurring themes as a direct voice-of-customer channel for support, product, and marketing.</li></ul></div>
+    </div>
+    <div class="rollout-detail-impact"><strong>Why this matters for ButterflyMX</strong><span>Owning a useful community gives ButterflyMX a place to host the conversation instead of only reacting to it elsewhere. It also creates positive, first-party discussion that can be discovered by prospects, Google, and AI systems.</span></div>
+  </div>
+</template>
+
+<template id="resource-rollout-funnel">
+  <div class="rollout-detail">
+    <div class="rollout-detail-hero"><div class="rollout-detail-num">04</div><div><h4>Turn Reddit into the research and distribution engine</h4><p class="lead">Once ButterflyMX has earned community trust, Reddit stops being only a reputation channel and becomes a source of audience language, creative ideas, and cross-platform growth.</p></div></div>
+    <div class="rollout-detail-grid">
+      <div class="rollout-detail-card"><h5>Feed research into marketing</h5><ul><li>Collect recurring objections, frustrations, phrases, jokes, and high-engagement posts.</li><li>Use that language in Meta ad concepts, hooks, customer avatars, sales enablement, and organic content.</li><li>Use the strongest Reddit pain points as inputs for the existing ad-generation workflow.</li></ul></div>
+      <div class="rollout-detail-card"><h5>Build the cross-channel funnel</h5><ul><li>Move community members toward useful ButterflyMX content on Facebook, Instagram, and X when there is a natural reason to follow.</li><li>Repurpose community insights into platform-native posts rather than copying Reddit content verbatim.</li><li>Use each platform to bring new people back into owned communities, creating a repeatable audience loop.</li></ul></div>
+    </div>
+    <div class="rollout-detail-impact"><strong>Why this matters for ButterflyMX</strong><span>Reddit becomes more than defense. It becomes a live market-research panel and a feeder channel that improves paid creative, organic social, positioning, and customer acquisition across the rest of the brand ecosystem.</span></div>
+  </div>
+</template>
+
+<template id="resource-warmup">
+<div class="warmup-shell">
+      <div class="warmup-top">
+        <div class="warmup-title-card">
+          <div class="eyebrow"><span class="dot"></span>FOR 3 ACCOUNTS</div>
+          <h3>Reddit growth strategy for three authentic operator profiles</h3>
+          <p>Each account follows the same cadence. As soon as an action is highlighted in light purple, it becomes part of that account's <strong>ongoing daily baseline</strong> from that day forward.</p>
+          <div class="warmup-account-row">
+            <span class="warmup-account-chip"><i>1</i> Account One</span>
+            <span class="warmup-account-chip"><i>2</i> Account Two</span>
+            <span class="warmup-account-chip"><i>3</i> Account Three</span>
+          </div>
+        </div>
+
+        <div class="warmup-side-stack">
+          <div class="warmup-key-card">
+            <h4>Key</h4>
+            <div class="warmup-key-list">
+              <div class="warmup-key-item">
+                <div class="warmup-swatch recurring"></div>
+                <div><strong>Added to daily actions</strong><span>Any item in light purple becomes a permanent repeat action from that day forward.</span></div>
+              </div>
+              <div class="warmup-key-item">
+                <div class="warmup-swatch workflow"></div>
+                <div><strong>Workflow placeholder</strong><span>Pink items are placeholders for automation workflow links you can connect later.</span></div>
+              </div>
+              <div class="warmup-key-item">
+                <div class="warmup-swatch milestone"></div>
+                <div><strong>Milestone</strong><span>Signals the account has earned enough trust to take the next step.</span></div>
+              </div>
+              <div class="warmup-key-item">
+                <div class="warmup-swatch funnel"></div>
+                <div><strong>Funnel action</strong><span>Content begins to connect back to owned channels or profile-level conversion points.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="warmup-rules-card">
+            <h4>Operating notes</h4>
+            <ul>
+              <li>Disclose affiliation with ButterflyMX on account profiles.</li>
+              <li>Keep at least 60% of total activity non-promotional.</li>
+              <li>Only mention or promote the product when it directly helps the thread.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="warmup-board">
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Warmup</span><span class="day-title">Day 1</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Create Reddit account</div>
+            <div class="warmup-item recurring">Scroll for 15 minutes</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Warmup</span><span class="day-title">Day 2</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Upvote 2 posts</div>
+            <div class="warmup-item">Account setup</div>
+            <div class="warmup-item workflow">Subreddit list <small>Workflow placeholder</small></div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Warmup</span><span class="day-title">Day 3</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Leave 1 comment</div>
+            <div class="warmup-item workflow">Comment workflow <small>Workflow placeholder</small></div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Warmup</span><span class="day-title">Day 4</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Upvote 3 posts</div>
+            <div class="warmup-item">Join 3 subreddits</div>
+            <div class="warmup-item workflow">Subreddit list <small>Workflow placeholder</small></div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Cadence</span><span class="day-title">Day 5</span></div>
+          <div class="day-body">
+            <div class="warmup-item note">Repeat the daily actions in the <strong>morning</strong> and again in the <strong>afternoon</strong> from now on.</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Cadence</span><span class="day-title">Day 6</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Share 3 posts</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Cadence</span><span class="day-title">Day 7</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Make a post</div>
+            <div class="warmup-item">Reply to your comments</div>
+            <div class="warmup-item workflow">Post workflow <small>Workflow placeholder</small></div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Expansion</span><span class="day-title">Day 8</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Interact in 2 alternative subreddits</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Expansion</span><span class="day-title">Day 9</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Begin interacting with r/ButterflyMX</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Expansion</span><span class="day-title">Day 10</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Begin interacting with owned subreddit</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Publishing</span><span class="day-title">Day 11</span></div>
+          <div class="day-body">
+            <div class="warmup-item recurring">Make a post</div>
+            <div class="warmup-item recurring">Reply to your comments</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Publishing</span><span class="day-title">Day 12</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Reference ButterflyMX under relevant trending posts</div>
+            <div class="warmup-item milestone">Accounts have good trust</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Publishing</span><span class="day-title">Day 13</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Make a blog post in r/ButterflyMX and pin it</div>
+            <div class="warmup-item funnel">Funnel</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Publishing</span><span class="day-title">Day 14</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Make a blog post in owned subreddit and pin it to profile</div>
+            <div class="warmup-item funnel">Funnel</div>
+          </div>
+        </article>
+
+        <article class="warmup-day">
+          <div class="day-head"><span class="day-kicker">Final notes</span><span class="day-title">Keep scaling</span></div>
+          <div class="day-body">
+            <div class="warmup-item">Increase the number of daily actions steadily</div>
+            <div class="warmup-item note">Aim for <strong>1 promotional post for every 5 contributions</strong>.</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="warmup-footer-note"><b>Reading the plan:</b> the purple items stack over time. By the second week, each account should be following a larger repeatable behavior baseline while still keeping the majority of activity genuinely helpful and non-promotional.</div>
+    </div>
+</template>
+
+<template id="resource-meta">
+  <div class="resource-full-workflow">
+    <img src="images/n8n_workflow.png" alt="Full Meta ads generator n8n workflow">
+  </div>
+</template>
+
+<template id="resource-input">
+  <div class="resource-full-workflow">
+    <img src="images/input.png" alt="Full Viral Post image">
+  </div>
+</template>
+
+<template id="resource-output">
+  <div class="resource-full-workflow">
+    <img src="images/output.png" alt="Full Meta Ad Output image">
+  </div>
+</template>
+
+<template id="resource-redditgen">
+  <div class="resource-full-workflow">
+    <img src="images/n8n_workflow_2.png" alt="Full Reddit post and comment generator n8n workflow">
+  </div>
+</template>
+
+</div>
+</div>
+
+<hr class="divider">
+
+<!-- ============ KEY TAKEAWAYS ============ -->
+<section class="tight" id="key-takeaways" data-toc-section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span>SUMMARY</div>
+      <h2>Key takeaways</h2>
+    </div>
+    <div class="takeaway-list">
+      <div class="takeaway"><div class="tnum">01</div><p>Reddit is no longer just a community channel, it is a discovery layer for AI search, Google visibility, and B2B vendor recommendations.</p></div>
+      <div class="takeaway"><div class="tnum">02</div><p>Because Reddit threads are 4.7x more likely than blog posts to show up in AI answers, unmanaged sentiment can become an acquisition problem far beyond Reddit itself.</p></div>
+      <div class="takeaway"><div class="tnum">03</div><p>The right operating model is not promotion; it is useful participation, fast response times, and real community trust built before you need it.</p></div>
+      <div class="takeaway"><div class="tnum">04</div><p>Astroturfing, self-promo, and defensive engagement are exactly the behaviors most likely to damage both subreddit reputation and downstream AI/search perception.</p></div>
+      <div class="takeaway"><div class="tnum">05</div><p>Reddit should feed both brand defense and product insight: monitor, engage, learn, and route recurring themes back into content, positioning, and the roadmap.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="sources" id="sources" data-toc-section>
+  <div class="wrap">
+    <div class="eyebrow on-dark"><span class="dot"></span>SOURCES &amp; METHODOLOGY</div>
+    <h2 style="color:#fff; margin-top:12px; font-size:26px;">Where the numbers came from</h2>
+    <div class="src-grid">
+      <div class="src-col">
+        <h4>Reddit &amp; B2B buying behavior</h4>
+        <ol> 
+          <li>Semrush — Reddit AI Search Visibility Study</li>
+          <li>Profound — AI Platform Citation Patterns</li>
+          <li>CBS News — reporting on the Google–Reddit AI training/content licensing deal</li>
+          <li>Octolens — "How B2B SaaS Wins on Reddit" (2026)</li>
+          <li>TrustRadius — 2026 B2B Buying Report, on AI answer fact-checking and review fraud</li>
+          <li>MarketingProfs / R2integrated — survey on astroturfing and buyer trust</li>
+        </ol>
+      </div>
+      <div class="src-col">
+        <h4>Meta ads &amp; personalization</h4>
+        <ol>
+          <li>IAB research, via InBeat Agency — consumer response to personalized ads</li>
+          <li>Yahoo Research, via Thunder Experience Cloud — engagement &amp; memorability lift</li>
+          <li>Marketing LTB creative-relevance study — programmatic CTR lift</li>
+          <li>McKinsey, via Improvado — revenue lift from personalization at scale</li>
+          <li>WebTribunal — 2026 targeted advertising statistics, ad-spend efficiency</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Prepared by Leon Fray, Social Media Strategist — Strategic Proposal for ButterflyMX. External statistics are cited to their original publishers; figures may shift as source studies are updated.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const links = [...document.querySelectorAll('.report-sidebar a[data-section]')];
+  const targets = links
+    .map(link => ({ link, el: document.getElementById(link.dataset.section) }))
+    .filter(item => item.el);
+
+  const setActive = (id) => {
+    links.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+  };
+
+  // Clicking a contents item scrolls to the real heading and keeps the URL useful.
+  links.forEach(link => {
+    link.addEventListener('click', () => setActive(link.dataset.section));
+  });
+
+  // Hovering any corresponding section immediately mirrors that state in the contents rail.
+  targets.forEach(({ link, el }) => {
+    el.addEventListener('mouseenter', () => setActive(link.dataset.section));
+  });
+
+  // When not hovering, keep the highlight synchronized with the section currently being read.
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a,b) => Math.abs(a.boundingClientRect.top - 120) - Math.abs(b.boundingClientRect.top - 120));
+    if (visible[0]) setActive(visible[0].target.id);
+  }, { rootMargin: '-10% 0px -72% 0px', threshold: 0 });
+
+  targets.forEach(({ el }) => observer.observe(el));
+  if (targets.length) setActive(targets[0].el.id);
+
+  const rolloutCarousel = document.querySelector('[data-rollout-carousel]');
+  if (rolloutCarousel) {
+    const track = rolloutCarousel.querySelector('[data-rollout-track]');
+    const slides = [...rolloutCarousel.querySelectorAll('.rollout-slide')];
+    const dots = [...rolloutCarousel.querySelectorAll('.rollout-dot')];
+    const prevBtn = rolloutCarousel.querySelector('[data-rollout-prev]');
+    const nextBtn = rolloutCarousel.querySelector('[data-rollout-next]');
+    const stepEl = rolloutCarousel.querySelector('[data-rollout-step]');
+    const titleEl = rolloutCarousel.querySelector('[data-rollout-title]');
+    const relatedEl = rolloutCarousel.querySelector('[data-rollout-related]');
+    let currentSlide = 0;
+
+    const paintSlide = (index) => {
+      currentSlide = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      const slide = slides[currentSlide];
+      if (stepEl) stepEl.textContent = slide.dataset.step || String(currentSlide + 1).padStart(2, '0');
+      if (titleEl) titleEl.textContent = slide.dataset.title || '';
+      if (relatedEl) relatedEl.textContent = slide.dataset.related || '';
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+    };
+
+    prevBtn?.addEventListener('click', () => paintSlide(currentSlide - 1));
+    nextBtn?.addEventListener('click', () => paintSlide(currentSlide + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => paintSlide(i)));
+    rolloutCarousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') paintSlide(currentSlide - 1);
+      if (e.key === 'ArrowRight') paintSlide(currentSlide + 1);
+    });
+    paintSlide(0);
+  }
+
+  const modal = document.getElementById('resourceModal');
+  const modalBody = document.getElementById('resourceModalBody');
+  const modalTitle = document.getElementById('resourceModalTitle');
+  const closeModalBtn = modal?.querySelector('.resource-modal-close');
+  const titles = {
+    warmup: 'Reddit 14-Day Warmup',
+    input: 'Viral Post',
+    meta: 'Meta Ads Generator Workflow',
+    output: 'Meta Ad Output',
+    redditgen: 'Reddit Post & Comment Generator Workflow',
+    'rollout-monitor': 'Step 1 — Track & Respond',
+    'rollout-power': 'Step 2 — Seed Power Accounts',
+    'rollout-community': 'Step 3 — Rebuild r/ButterflyMX',
+    'rollout-funnel': 'Step 4 — Close the Growth Loop'
+  };
+  let lastTrigger = null;
+
+  const openResource = (key, trigger) => {
+    const tpl = document.getElementById(`resource-${key}`);
+    if (!modal || !modalBody || !tpl) return;
+    lastTrigger = trigger || null;
+    modalTitle.textContent = titles[key] || 'Resource';
+    modalBody.replaceChildren(tpl.content.cloneNode(true));
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeModalBtn?.focus();
+  };
+  const closeResource = () => {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    modalBody.replaceChildren();
+    lastTrigger?.focus();
+  };
+
+  document.querySelectorAll('[data-resource]').forEach(btn => {
+    btn.addEventListener('click', () => openResource(btn.dataset.resource, btn));
+  });
+  closeModalBtn?.addEventListener('click', closeResource);
+  modal?.addEventListener('click', e => { if (e.target === modal) closeResource(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal?.classList.contains('open')) closeResource(); });
+})();
+</script>
+
+</body>
+</html>
